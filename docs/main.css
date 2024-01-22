@@ -1,0 +1,316 @@
+ 
+/* start css.sty */
+.ntx-Regular-tlf-t1-x-x-120{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-120{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-120{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-120{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-248{font-size:206%; font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-248{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-248{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-248{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-248{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-144{font-size:120%; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-144{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-144{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-144{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-109{font-size:90%; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-109{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-109{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-109{ font-family: 'TeXGyreTermesX', serif;}
+.ts1-qtmr-x-x-109{font-size:90%; font-family: 'TeXGyreTermes', serif;}
+.ntx-Italic-tlf-t1-x-x-172{font-size:143%; font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-172{ font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-172{ font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-120{ font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-120{ font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-120{ font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-109{font-size:90%; font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-109{ font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Italic-tlf-t1-x-x-109{ font-style: italic; font-family: 'TeXGyreTermesX', serif;}
+.pcrr8t-x-x-120{ font-family: 'Nimbus Mono L', serif;}
+.pcrr8t-x-x-120{ font-family: 'Nimbus Mono L', serif;}
+.pcrr8t-x-x-120{ font-family: 'Nimbus Mono L', serif;}
+.ntx-Bold-tlf-t1-x-x-120{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-120{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-120{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-120{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-120{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-144{font-size:120%; font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-144{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-144{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-144{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-144{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.pcrr8t-x-x-144{font-size:120%; font-family: 'Nimbus Mono L', serif;}
+.pcrr8t-x-x-144{ font-family: 'Nimbus Mono L', serif;}
+.pcrr8t-x-x-144{ font-family: 'Nimbus Mono L', serif;}
+.ntx-Bold-tlf-t1-x-x-109{font-size:90%; font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-109{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-109{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-109{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-109{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-172{font-size:143%; font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-172{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-172{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-172{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Bold-tlf-t1-x-x-172{ font-weight: bold; font-family: 'TeXGyreTermesX', serif;}
+.pcrr8t-{font-size:83%; font-family: 'Nimbus Mono L', serif;}
+.pcrr8t-{ font-family: 'Nimbus Mono L', serif;}
+.pcrr8t-{ font-family: 'Nimbus Mono L', serif;}
+.ntx-Regular-tlf-t1-x-x-60{font-size:50%; font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-60{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-60{ font-family: 'TeXGyreTermesX', serif;}
+.ntx-Regular-tlf-t1-x-x-60{ font-family: 'TeXGyreTermesX', serif;}
+.pcrro8t-x-x-120{ font-style: oblique; font-family: 'Nimbus Mono L', serif;}
+.pcrb8t-{font-size:83%; font-weight: bold; font-family: 'Nimbus Mono L', serif;}
+p{margin-top:0;margin-bottom:0}
+p.indent{text-indent:0;}
+p + p{margin-top:1em;}
+p + div, p + pre {margin-top:1em;}
+div + p, pre + p {margin-top:1em;}
+a { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; }
+@media print {div.crosslinks {visibility:hidden;}}
+table.tabular{border-collapse: collapse; border-spacing: 0;}
+a img { border-top: 0; border-left: 0; border-right: 0; }
+center { margin-top:1em; margin-bottom:1em; }
+td center { margin-top:0em; margin-bottom:0em; }
+.Canvas { position:relative; }
+img.math{vertical-align:middle;}
+div.par-math-display, div.math-display{text-align:center;}
+li p.indent { text-indent: 0em }
+li p:first-child{ margin-top:0em; }
+li p:last-child, li div:last-child { margin-bottom:0.5em; }
+li p:first-child{ margin-bottom:0; }
+li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+.enumerate1 {list-style-type:decimal;}
+.enumerate2 {list-style-type:lower-alpha;}
+.enumerate3 {list-style-type:lower-roman;}
+.enumerate4 {list-style-type:upper-alpha;}
+div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+div.newtheorem .head{font-weight: bold;}
+.obeylines-h,.obeylines-v {white-space: nowrap; }
+div.obeylines-v p { margin-top:0; margin-bottom:0; }
+.overline{ text-decoration:overline; }
+.overline img{ border-top: 1px solid black; }
+td.displaylines {text-align:center; white-space:nowrap;}
+.centerline {text-align:center;}
+.rightline {text-align:right;}
+pre.verbatim {font-family: monospace,monospace; text-align:left; clear:both; }
+.fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.fbox {display:table}
+div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.minipage{width:100%;}
+div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+div.center div {text-align: left;}
+div.flushright, div.flushright div.flushright {text-align: right;}
+div.flushright div {text-align: left;}
+div.flushleft {text-align: left;}
+.underline{ text-decoration:underline; }
+.underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+.framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+.framebox-c {text-align:center;}
+.framebox-l {text-align:left;}
+.framebox-r {text-align:right;}
+span.thank-mark{ vertical-align: super }
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+table.tabular td p{margin-top:0em;}
+table.tabular {margin-left: auto; margin-right: auto;}
+td p:first-child{ margin-top:0em; }
+td p:last-child{ margin-bottom:0em; }
+div.td00{ margin-left:0pt; margin-right:0pt; }
+div.td01{ margin-left:0pt; margin-right:5pt; }
+div.td10{ margin-left:5pt; margin-right:0pt; }
+div.td11{ margin-left:5pt; margin-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+td.td00{ padding-left:0pt; padding-right:0pt; }
+td.td01{ padding-left:0pt; padding-right:5pt; }
+td.td10{ padding-left:5pt; padding-right:0pt; }
+td.td11{ padding-left:5pt; padding-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+.hline hr, .cline hr{ height : 0px; margin:0px; }
+.hline td, .cline td{ padding: 0; }
+.hline hr, .cline hr{border:none;border-top:1px solid black;}
+.hline {border-top: 1px solid black;}
+.tabbing-right {text-align:right;}
+div.float, div.figure {margin-left: auto; margin-right: auto;}
+div.float img {text-align:center;}
+div.figure img {text-align:center;}
+.marginpar,.reversemarginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+.marginpar p,.reversemarginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+.reversemarginpar{float:left;}
+table.equation {width:100%;}
+.equation td{text-align:center; }
+td.equation { margin-top:1em; margin-bottom:1em; } 
+td.equation-label { width:5%; text-align:center; }
+td.eqnarray4 { width:5%; white-space: normal; }
+td.eqnarray2 { width:5%; }
+table.eqnarray-star, table.eqnarray {width:100%;}
+div.eqnarray{text-align:center;}
+div.array {text-align:center;}
+div.pmatrix {text-align:center;}
+table.pmatrix {width:100%;}
+span.pmatrix img{vertical-align:middle;}
+div.pmatrix {text-align:center;}
+table.pmatrix {width:100%;}
+span.bar-css {text-decoration:overline;}
+img.cdots{vertical-align:middle;}
+.partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+.chapterToc a, .chapterToc, .likechapterToc a, .likechapterToc, .appendixToc a, .appendixToc {line-height: 200%; font-weight:bold;}
+.index-item, .index-subitem, .index-subsubitem {display:block}
+div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+div.caption span.id{font-weight: bold; white-space: nowrap; }
+h1.partHead{text-align: center}
+p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+.paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+.subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+.verse{white-space:nowrap; margin-left:2em}
+div.maketitle {text-align:center;}
+h2.titleHead{text-align:center;}
+div.maketitle{ margin-bottom: 2em; }
+div.author, div.date {text-align:center;}
+div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+div.author{white-space: nowrap;}
+h1.partHead{text-align: center}
+ .chapterToc, .likechapterToc {margin-left:0em;}
+ .chapterToc ~ .likesectionToc, .chapterToc ~ .sectionToc, .likechapterToc ~ .likesectionToc, .likechapterToc ~ .sectionToc {margin-left:2em;}
+ .chapterToc ~ .likesectionToc ~ .likesubsectionToc, .chapterToc ~ .likesectionToc ~ .subsectionToc, .chapterToc ~ .sectionToc ~ .likesubsectionToc, .chapterToc ~ .sectionToc ~ .subsectionToc, .likechapterToc ~ .likesectionToc ~ .likesubsectionToc, .likechapterToc ~ .likesectionToc ~ .subsectionToc, .likechapterToc ~ .sectionToc ~ .likesubsectionToc, .likechapterToc ~ .sectionToc ~ .subsectionToc {margin-left:4em;}
+.chapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .chapterToc ~ .likesectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .likesectionToc ~ .subsectionToc ~ .subsubsectionToc, .chapterToc ~ .sectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .sectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .chapterToc ~ .sectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .sectionToc ~ .subsectionToc ~ .subsubsectionToc, .likechapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .likechapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .likechapterToc ~ .likesectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .likechapterToc ~ .likesectionToc ~ .subsectionToc ~ .subsubsectionToc, .likechapterToc ~ .sectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .likechapterToc ~ .sectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .likechapterToc ~ .sectionToc ~ .subsectionToc ~ .likesubsubsectionToc .likechapterToc ~ .sectionToc ~ .subsectionToc ~ .subsubsectionToc {margin-left:6em;}
+ .likesectionToc , .sectionToc {margin-left:0em;}
+ .likesectionToc ~ .likesubsectionToc, .likesectionToc ~ .subsectionToc, .sectionToc ~ .likesubsectionToc, .sectionToc ~ .subsectionToc {margin-left:2em;}
+.likesectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .likesectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .likesectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .likesectionToc ~ .subsectionToc ~ .subsubsectionToc, .sectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .sectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .sectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .sectionToc ~ .subsectionToc ~ .subsubsectionToc {margin-left:4em;}
+ .likesubsectionToc, .subsectionToc {margin-left:0em;}
+ .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc {margin-left:2em;}
+.equation td{text-align:center; }
+.equation-star td{text-align:center; }
+table.equation-star { width:100%; }
+table.equation { width:100%; }
+table.align, table.alignat, table.xalignat, table.xxalignat, table.flalign {width:95%; margin-left:5%; white-space: nowrap;}
+table.align-star, table.alignat-star, table.xalignat-star, table.flalign-star {margin-left:auto; margin-right:auto; white-space: nowrap;}
+td.align-label { width:5%; text-align:center; }
+td.align-odd { text-align:right; padding-right:0.3em;}
+td.align-even { text-align:left; padding-right:0.6em;}
+table.multline, table.multline-star {width:100%;}
+td.gather {text-align:center; }
+table.gather {width:100%;}
+div.gather-star {text-align:center;}
+.rotatebox{display: inline-block;}
+.lstlisting .label{margin-right:0.5em; }
+div.lstlisting{font-family: monospace,monospace; white-space: nowrap; margin-top:0.5em; margin-bottom:0.5em; }
+div.lstinputlisting{ font-family: monospace,monospace; white-space: nowrap; }
+.lstinputlisting .label{margin-right:0.5em;}
+dt.enumerate-enumitem{float:left; clear:left; margin-left:1em; margin-right:1em;}
+span#textcolor1{color:#000000}
+span#textcolor1{color:rgb(0,0,0)}
+span#textcolor2{color:#000000}
+span#textcolor2{color:rgb(0,0,0)}
+span#textcolor3{color:#000000}
+span#textcolor3{color:rgb(0,0,0)}
+span#textcolor4{color:#000000}
+span#textcolor4{color:rgb(0,0,0)}
+span#textcolor5{color:#000000}
+span#textcolor5{color:rgb(0,0,0)}
+span#textcolor6{color:#000000}
+span#textcolor6{color:rgb(0,0,0)}
+span#textcolor7{color:#000000}
+span#textcolor7{color:rgb(0,0,0)}
+span#textcolor8{color:#000000}
+span#textcolor8{color:rgb(0,0,0)}
+span#textcolor9{color:#000000}
+span#textcolor9{color:rgb(0,0,0)}
+span#textcolor10{color:#000000}
+span#textcolor10{color:rgb(0,0,0)}
+span#textcolor11{color:#000000}
+span#textcolor11{color:rgb(0,0,0)}
+span#textcolor12{color:#000000}
+span#textcolor12{color:rgb(0,0,0)}
+span#textcolor13{color:#000000}
+span#textcolor13{color:rgb(0,0,0)}
+span#textcolor14{color:#000000}
+span#textcolor14{color:rgb(0,0,0)}
+span#textcolor15{color:#000000}
+span#textcolor15{color:rgb(0,0,0)}
+span#textcolor16{color:#000000}
+span#textcolor16{color:rgb(0,0,0)}
+span#textcolor17{color:#000000}
+span#textcolor17{color:rgb(0,0,0)}
+span#textcolor18{color:#000000}
+span#textcolor18{color:rgb(0,0,0)}
+span#textcolor19{color:#000000}
+span#textcolor19{color:rgb(0,0,0)}
+span#textcolor20{color:#000000}
+span#textcolor20{color:rgb(0,0,0)}
+span#textcolor21{color:#000000}
+span#textcolor21{color:rgb(0,0,0)}
+span#textcolor22{color:#000000}
+span#textcolor22{color:rgb(0,0,0)}
+span#textcolor23{color:#000000}
+span#textcolor23{color:rgb(0,0,0)}
+span#textcolor24{color:#000000}
+span#textcolor24{color:rgb(0,0,0)}
+span#textcolor25{color:#000000}
+span#textcolor25{color:rgb(0,0,0)}
+span#textcolor26{color:#000000}
+span#textcolor26{color:rgb(0,0,0)}
+span#textcolor27{color:#000000}
+span#textcolor27{color:rgb(0,0,0)}
+span#textcolor28{color:#000000}
+span#textcolor28{color:rgb(0,0,0)}
+span#textcolor29{color:#000000}
+span#textcolor29{color:rgb(0,0,0)}
+span#textcolor30{color:#000000}
+span#textcolor30{color:rgb(0,0,0)}
+span#textcolor31{color:#000000}
+span#textcolor31{color:rgb(0,0,0)}
+span#textcolor32{color:#000000}
+span#textcolor32{color:rgb(0,0,0)}
+span#textcolor33{color:#000000}
+span#textcolor33{color:rgb(0,0,0)}
+span#textcolor34{color:#000000}
+span#textcolor34{color:rgb(0,0,0)}
+span#textcolor35{color:#000000}
+span#textcolor35{color:rgb(0,0,0)}
+span#textcolor36{color:#000000}
+span#textcolor36{color:rgb(0,0,0)}
+span#textcolor37{color:#000000}
+span#textcolor37{color:rgb(0,0,0)}
+span#textcolor38{color:#000000}
+span#textcolor38{color:rgb(0,0,0)}
+span#textcolor39{color:#000000}
+span#textcolor39{color:rgb(0,0,0)}
+span#textcolor40{color:#000000}
+span#textcolor40{color:rgb(0,0,0)}
+span#textcolor41{color:#000000}
+span#textcolor41{color:rgb(0,0,0)}
+span#textcolor42{color:#000000}
+span#textcolor42{color:rgb(0,0,0)}
+span#textcolor43{color:#000000}
+span#textcolor43{color:rgb(0,0,0)}
+span#textcolor44{color:#000000}
+span#textcolor44{color:rgb(0,0,0)}
+span#textcolor45{color:#000000}
+span#textcolor45{color:rgb(0,0,0)}
+span#textcolor46{color:#000000}
+span#textcolor46{color:rgb(0,0,0)}
+span#textcolor47{color:#000000}
+span#textcolor47{color:rgb(0,0,0)}
+span#textcolor48{color:#000000}
+span#textcolor48{color:rgb(0,0,0)}
+span#textcolor49{color:#000000}
+span#textcolor49{color:rgb(0,0,0)}
+span#textcolor50{color:#000000}
+span#textcolor50{color:rgb(0,0,0)}
+span#textcolor51{color:#000000}
+span#textcolor51{color:rgb(0,0,0)}
+span#textcolor52{color:#000000}
+span#textcolor52{color:rgb(0,0,0)}
+span#textcolor53{color:#000000}
+span#textcolor53{color:rgb(0,0,0)}
+span#textcolor54{color:#000000}
+span#textcolor54{color:rgb(0,0,0)}
+span#textcolor55{color:#000000}
+span#textcolor55{color:rgb(0,0,0)}
+span#textcolor56{color:#000000}
+span#textcolor56{color:rgb(0,0,0)}
+/* end css.sty */
+
