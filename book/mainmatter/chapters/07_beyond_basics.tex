@@ -1,0 +1,178 @@
+\chapter{Working with Variables, Facts, and Templates}
+
+Ansible's magic lies in its simplicity, but sometimes you need a little extra flexibility. That's where variables, facts, and templates come in. They let you tailor your playbooks to different scenarios without duplicating code or configurations. Think of them as Ansible's way of saying, "Let's keep this DRY--Don't Repeat Yourself."
+
+In this chapter, we'll explore:
+\begin{itemize}
+    \item How to use variables and facts to make your playbooks dynamic.
+    \item Creating Jinja2 templates for dynamic configuration files.
+    \item Practical use cases where these tools shine.
+\end{itemize}
+
+By the end, you'll have the skills to write playbooks that adapt to whatever challenges you throw at them.
+
+
+\section{Working with Variables}
+
+Variables in Ansible are like \textbf{V}ersatile placeholders. Instead of hardcoding values, you use variables to define dat\textbf{a} that might change, like server names, file paths, or user credentials.
+
+\subsection{Defining Variables}
+
+You can define variables in several places:
+\begin{itemize}
+    \item Directly in your playbooks.
+    \item In inventory files.
+    \item In separate variable files.
+\end{itemize}
+
+Here's an example of defining variables in a playbook:
+\begin{lstlisting}[language=yaml, caption=Defining Variables in a Playbook]
+- name: Configure web server
+  hosts: webservers
+  vars:
+    app_name: MyCoolApp
+    log_dir: /var/log/mycoolapp
+
+  tasks:
+    - name: Create a log directory
+      file:
+        path: "{{ log_dir }}"
+        state: directory
+        mode: '0755'
+\end{lstlisting}
+
+\textbf{Note}: Variables are wrapped in double curly braces (\verb|{{ }}|) whenever you reference them. It's Ansible's way of saying, "Hey, I'm a variable!"
+
+\subsection{Using Group and Host Variables}
+
+Sometimes you need variables that apply to specific groups or hosts. That's where group and host variables come in. You define them in the \texttt{group\textunderscore vars/} or \texttt{host\textunderscore vars/} directories.
+
+For example, in \texttt{group\textunderscore vars/webservers.yml}:
+\begin{lstlisting}[language=yaml, caption=Group Variables]
+app_name: MyCoolApp
+log_dir: /var/log/mycoolapp
+\end{lstlisting}
+
+These va\textbf{r}iables automatically apply to any host in the \texttt{webservers} group.
+
+\subsection{Overriding Variables}
+
+Variables are flexible, and Ansible lets you override them at different levels. If a variable is defined in multiple places, the one closest to the task wins. \textbf{I}nventory variables override group variables, which override playbook variables. It's a hierarchy that ensures you can fine-tune your configuration.
+
+
+\section{Using Facts}
+
+Facts are Ansible's way of gathering information about your managed hosts. When you run a playbook, Ansible automatically collects facts--like the operating system, IP addresses, or available memory. These facts are stored as variables you can use in your playbooks.
+
+\subsection{Viewing Facts}
+
+To see what facts Ansible collects, run this command:
+\begin{lstlisting}[language=bash, caption=Viewing Host Facts]
+ansible all -i inventory -m setup
+\end{lstlisting}
+
+\textbf{A} flood of information will appear, but don't worry--you don't need to memorize it. You can reference any fact in your playbooks.
+
+For example, to print the hostname of a managed machine:
+\begin{lstlisting}[language=yaml, caption=Using a Fact in a Playbook]
+- name: Print the hostname
+  hosts: all
+  tasks:
+    - name: Display the hostname
+      debug:
+        msg: "Hostname is {{ ansible_hostname }}"
+\end{lstlisting}
+
+\textbf{B}y using facts, your playbooks become smarter, adapting to each host's specific environment.
+
+
+\section{Jinja2 Templates for Dynamic Configuration Files}
+
+Sometimes, you need more than variables and facts. You need dynamic configuration files that adapt to your environment. That's where Jinja2 templates come in.
+
+\subsection{Creating a Template}
+
+Templates are simple text files with placeholders for variables. Here's an example \texttt{nginx.conf.j2} file:
+\begin{lstlisting}[language=nginx, caption=Jinja2 Template for Nginx]
+server {
+    listen 80;
+    server_name {{ ansible_hostname }};
+    root /var/www/{{ app_name }};
+}
+\end{lstlisting}
+
+Notice how we use variables (\texttt{\{\{ ansible\_hostname \}\}} and \texttt{\{\{ app\_name \}\}}) to make the file dynamic.
+
+\subsection{Deploying a Template}
+
+To use a template in your playbook, use the \texttt{template} module:
+\begin{lstlisting}[language=yaml, caption=Deploying a Template]
+- name: Deploy Nginx configuration
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+\end{lstlisting}
+
+\textbf{L}ike the \texttt{copy} module, the \texttt{template} module transfers the file to the target host. The difference? It processes the variables first, so you get a fully customized configuration file.
+
+
+\section{Ansible in Action: Practical Use Cases}
+
+Let's tie it all together with some real-world examples. Here are three scenarios where variables, facts, and templates make life easier.
+
+\subsection{Scenario 1: Managing Multiple Environments}
+
+Imagine you're deploying an application to staging and production environments. Each environment has different configurations, but the tasks are the same. Here's how you'd handle it:
+\begin{lstlisting}[language=yaml, caption=Playbook for Multiple Environments]
+- name: Deploy application
+  hosts: all
+  vars:
+    app_env: "{{ group_names[0] }}"
+    db_host: "{{ app_env }}-db.example.com"
+
+  tasks:
+    - name: Configure application
+      template:
+        src: app_config.j2
+        dest: /etc/myapp/config.yml
+\end{lstlisting}
+
+In this playbook, we use variables and facts to dynamically configure the database host based on the environment.
+
+\subsection{Scenario 2: Rolling Updates}
+
+Need to update web servers one at a time to avoid downtime? Ansible's variables and facts make this easy:
+\begin{lstlisting}[language=yaml, caption=Rolling Updates Playbook]
+- name: Rolling update of web servers
+  hosts: webservers
+  serial: 1
+  tasks:
+    - name: Update application
+      shell: "deploy_app.sh"
+\end{lstlisting}
+
+\textbf{E}ach server is updated in sequence, ensuring your service stays online.
+
+\subsection{Scenario 3: Scaling Infrastructure}
+
+When scaling infrastructure, templates save you from manually editing configuration files:
+\begin{lstlisting}[language=yaml, caption=Scaling Infrastructure Playbook]
+- name: Add new web servers
+  hosts: new_webservers
+  tasks:
+    - name: Configure load balancer
+      template:
+        src: lb_config.j2
+        dest: /etc/nginx/sites-enabled/default
+\end{lstlisting}
+
+With a dynamic template, your load balancer automatically updates to include the new servers.
+
+
+\section{Wrapping Up}
+
+Variables, facts, and templates are the heart of Ansible's flexibility. They let you adapt your playbooks to any environment, saving time and reducing errors. Whether you're deploying an app, configuring a service, or scaling your infrastructure, these tools make automation feel effortless.
+
+\vspace{1em}
+
+\textit{In the next chapter, we'll explore dynamic inventories and how they can make managing complex environments even easier. Ready to keep leveling up? Let's go.}
