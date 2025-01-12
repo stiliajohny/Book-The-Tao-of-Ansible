@@ -1,0 +1,69 @@
+\documentclass[12pt,openany]{book}
+% Set Times New Roman as the main font using the newtxtext and newtxmath packages
+\usepackage{newtxtext,newtxmath}
+
+% Include packages and styles
+\input{styles/preamble}
+
+% Ensure proper PDF settings for KDP
+\pdfminorversion=7  % PDF version 1.7 (recommended for KDP)
+\pdfobjcompresslevel=0  % Disable compression for better compatibility
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FRONT MATTER
+% Contains all preliminary material including title, copyright, dedication etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+\include{frontmatter/half_title}     % Half title page
+\include{frontmatter/title}          % Main title page
+\include{frontmatter/copyright}      % Copyright information
+\include{frontmatter/dedication}     % Book dedication
+\include{frontmatter/preface}        % Author's preface
+\include{frontmatter/puzzle}         % Easter egg puzzle
+% \include{frontmatter/prologue}       % Opening narrative
+
+% Add Table of Contents
+\cleardoublepage
+\tableofcontents
+\clearpage
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % MAIN MATTER
+% % Contains the primary content of the book - all chapters
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+\include{mainmatter/chapters/01_introduction}           % Introduction to Ansible
+\include{mainmatter/chapters/02_getting_started}        % Getting Started with Ansible
+\include{mainmatter/chapters/03_ansible_basics}         % Core Ansible Concepts
+\include{mainmatter/chapters/04_thinking_like_ansible}  % Ansible Philosophy
+\include{mainmatter/chapters/05_first_workflow}         % First Ansible Workflow
+\include{mainmatter/chapters/06_building_foundation}    % Building Strong Foundation
+\include{mainmatter/chapters/07_beyond_basics}          % Advanced Concepts
+\include{mainmatter/chapters/08_ansible_in_action}      % Practical Applications
+\include{mainmatter/chapters/09_scaling_dynamic_inventories} % Scaling Ansible
+\include{mainmatter/chapters/10_secrets_and_security}   % Security Practices
+\include{mainmatter/chapters/11_advance_ansible_concepts_to_explore} % Advanced Concepts
+\include{mainmatter/chapters/12_debugging_and_troubleshooting} % Troubleshooting
+\include{mainmatter/chapters/13_reflections_and_next_steps}   % Conclusion
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % BACK MATTER
+% % Contains supplementary material including bibliography and author bio
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+
+% Bibliography settings
+\cleardoublepage
+{
+    \renewcommand{\bibname}{Bibliography}
+    \nocite{*}
+    \bibliographystyle{plain}
+    \bibliography{backmatter/bibliography}
+}
+
+% Include Author Biography
+\include{backmatter/author_bio}
+
+\end{document}
