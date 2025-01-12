@@ -1,0 +1,147 @@
+\chapter{Getting Started}
+
+Starting with Ansible is easier than you might think. You don't need a complex setup or an advanced understanding of automation to get up and running. This chapter will guide you through the initial steps: installing Ansible, creating a basic inventory file, and running your first ad-hoc command. By the end, you'll have a functional Ansible environment ready for action.
+
+\section{Installing Ansible}
+
+The first step to using Ansible is, of course, installing it. Luckily, Ansible's lightweight design makes this process straightforward. Here's how you can get started, whether you're on Linux, macOS, or Windows.
+
+\subsection{Installing on Linux}
+
+On most Linux distributions, Ansible can be installed directly from your system's package manager. For example:
+
+\begin{itemize}
+    \item On Ubuntu or Debian:
+    \begin{lstlisting}[language=bash, caption=Install Ansible on Ubuntu/Debian]
+sudo apt update
+sudo apt install ansible
+    \end{lstlisting}
+
+    \item On CentOS or RHEL:
+    \begin{lstlisting}[language=bash, caption=Install Ansible on CentOS/RHEL]
+sudo dnf install epel-release
+sudo dnf install ansible
+    \end{lstlisting}
+\end{itemize}
+
+\subsection{Installing on macOS}
+
+If you're on macOS, the easiest way to install Ansible is via Homebrew:
+
+\begin{lstlisting}[language=bash, caption=Install Ansible on macOS]
+brew install ansible
+\end{lstlisting}
+
+\subsection{Installing on Windows}
+
+For Windows users, the typical approach is to use the Windows Subsystem for Linux (WSL). Install a Linux distribution via the Microsoft Store, then follow the Linux installation instructions from within WSL.
+
+\textit{Tip: Always check the official Ansible documentation for the latest installation instructions for your operating system.}
+
+\section{Setting Up a Basic Inventory File}
+
+Ansible needs to know which machines to manage, and this is where the inventory file comes in. The inventory file is a simple text file listing the hosts (machines) you want to manage.
+
+\subsection{Creating Your First Inventory File}
+
+Let's create a basic inventory file. Open your favorite text editor and create a file called \texttt{inventory} in your project directory.
+
+Here's an example of what your inventory file might look like:
+\begin{lstlisting}[language=bash, caption=Basic Inventory File]
+[webservers]
+192.168.1.101
+192.168.1.102
+
+[databases]
+192.168.1.201
+192.168.1.202
+\end{lstlisting}
+
+In this example:
+\begin{itemize}
+    \item \texttt{webservers} and \texttt{databases} are groups of hosts.
+    \item Each host is listed by its IP address or hostname.
+\end{itemize}
+
+\subsection{Using Variables in the Inventory File}
+
+Ansible inventory files can also include variables, allowing you to customize how tasks are executed for specific hosts. For example:
+
+\begin{lstlisting}[language=bash, caption=Inventory File with Variables]
+[webservers]
+192.168.1.101 ansible_user=admin ansible_ssh_port=2222
+192.168.1.102 ansible_user=admin ansible_ssh_port=2222
+
+[databases]
+192.168.1.201 ansible_user=root
+192.168.1.202 ansible_user=root
+\end{lstlisting}
+
+Here, we specify SSH users and ports for each host. Ansible uses this information to connect and execute tasks.
+
+\textit{Tip: Store your inventory file in a Git repository to track changes and collaborate with your team.}
+
+\section{Running Your First Ad-Hoc Command}
+
+Now that Ansible is installed and your inventory file is set up, it's time to run your first command. Ansible supports “ad-hoc” commands, which are one-off tasks executed directly from the command line.
+
+\subsection{Testing Connectivity}
+
+Let's start by testing connectivity to the hosts in your inventory file. Run the following command:
+\begin{lstlisting}[language=bash, caption=Ping All Hosts in Inventory]
+ansible all -i inventory -m ping
+\end{lstlisting}
+
+\begin{itemize}
+    \item \texttt{all}: Targets all hosts in the inventory file.
+    \item \texttt{-i inventory}: Specifies the inventory file to use.
+    \item \texttt{-m ping}: Uses the \texttt{ping} module to test connectivity.
+\end{itemize}
+
+If everything is set up correctly, you'll see a response like this:
+\begin{lstlisting}[language=plain, caption=Ping Command Output]
+192.168.1.101 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+192.168.1.102 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+\end{lstlisting}
+
+\subsection{Executing a Command}
+
+Next, let's run a simple shell command on all the hosts. For example, to check the date on each machine:
+\begin{lstlisting}[language=bash, caption=Run Shell Command with Ansible]
+ansible all -i inventory -m shell -a "date"
+\end{lstlisting}
+
+In this command:
+\begin{itemize}
+    \item \texttt{-m shell}: Specifies the \texttt{shell} module.
+    \item \texttt{-a "date"}: Passes the \texttt{date} command as an argument.
+\end{itemize}
+
+You'll see the current date and time from each host.
+
+\subsection{Installing a Package}
+
+Finally, let's install a package (e.g., \texttt{htop}) on the \texttt{webservers} group:
+\begin{lstlisting}[language=bash, caption=Install a Package]
+ansible webservers -i inventory -m apt -a "name=htop state=present"
+\end{lstlisting}
+
+\begin{itemize}
+    \item \texttt{webservers}: Targets only the \texttt{webservers} group.
+    \item \texttt{-m apt}: Uses the \texttt{apt} module for package management.
+    \item \texttt{-a "name=htop state=present"}: Specifies the package name and desired state.
+\end{itemize}
+
+\section{Wrapping Up}
+
+Congratulations! You've installed Ansible, set up an inventory file, and run your first ad-hoc commands. These small steps might not seem revolutionary, but they form the foundation for powerful automation workflows.
+
+\vspace{1em}
+
+\textit{In the next chapter, we'll dive into playbooks. Ansible's true strength and learn how to write and execute them for repeatable and scalable automation.}
