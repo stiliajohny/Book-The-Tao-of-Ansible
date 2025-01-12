@@ -1,0 +1,196 @@
+\chapter{Ansible in Action: Practical Use Cases}
+
+The theory is great, but let's be honest--seeing Ansible in action is where the magic happens. In this chapter, we'll roll up our sleeves and tackle three real-world scenarios:
+\begin{itemize}
+    \item Deploying a simple web server (like Nginx or Apache).
+    \item Configuring a database server.
+    \item Orchestrating multiple services to work together seamlessly.
+\end{itemize}
+
+By the end of this chapter, you'll have practical playbooks you can use, adapt, and expand for your own needs. Let's get to it.
+
+
+\section{Deploying a Simple Web Server}
+
+Let's start with something straightforward: deploying a web server. Whether you're serving a static site or acting as a reverse proxy, tools like Nginx and Apache are staples in any sysadmin's toolkit.
+
+\subsection{Setting Up Nginx}
+
+Here's a playbook to install and configure Nginx on a group of web servers:
+\begin{lstlisting}[language=yaml, caption=Playbook for Nginx Deployment]
+- name: Deploy Nginx web server
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy Nginx configuration
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+
+    - name: Restart Nginx to apply changes
+      service:
+        name: nginx
+        state: restarted
+\end{lstlisting}
+
+\textbf{A} few key things are happening here:
+\begin{itemize}
+    \item The \texttt{apt} module ensures Nginx is installed.
+    \item The \texttt{service} module makes sure it's running and enabled at boot.
+    \item The \texttt{template} module deploys a custom configuration file.
+    \item Finally, Nginx is restarted to apply any changes.
+\end{itemize}
+
+\subsection{Customizing the Configuration}
+
+Here's an example \texttt{nginx.conf.j2} template:
+\begin{lstlisting}[language=nginx, caption=Custom Nginx Configuration Template]
+server {
+    listen 80;
+    server_name {{ ansible_hostname }};
+    root /var/www/html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+\end{lstlisting}
+
+\textbf{C}onfigure it once, and it works across all your web servers. Ansible replaces \texttt{\{\{ ansible\_hostname \}\}} with each server's hostname dynamically.
+
+
+\section{Configuring a Database Server}
+
+Databases are the backbone of many applications. Let's configure a MySQL server to handle incoming requests reliably.
+
+\subsection{Installing and Securing MySQL}
+
+Here's a playbook to install and secure MySQL:
+\begin{lstlisting}[language=yaml, caption=Playbook for MySQL Server Configuration]
+- name: Configure MySQL server
+  hosts: dbservers
+  become: true
+
+  tasks:
+    - name: Install MySQL
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Start and enable MySQL
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Secure MySQL installation
+      command: >
+        mysql_secure_installation
+        --use-default
+\end{lstlisting}
+
+\textbf{T}his setup ensures MySQL is installed, running, and secure. You can enhance it further by using Ansible modules to manage users and databases.
+
+\subsection{Creating a Database and User}
+
+Let's create a database and a user:
+\begin{lstlisting}[language=yaml, caption=Create Database and User]
+- name: Create database and user
+  hosts: dbservers
+  become: true
+
+  tasks:
+    - name: Create database
+      mysql_db:
+        name: myapp
+        state: present
+
+    - name: Create database user
+      mysql_user:
+        name: appuser
+        password: secretpassword
+        priv: 'myapp.*:ALL'
+        state: present
+\end{lstlisting}
+
+\textbf{I}n just a few lines, you've set up a database, created a user, and assigned permissions. No manual SQL commands needed.
+
+
+\section{Orchestrating Multiple Services}
+
+Now for the fun part: making everything work together. Let's deploy a web application that uses Nginx as the frontend and MySQL as the backend.
+
+\subsection{The Playbook}
+
+Here's how you can orchestrate multiple services in a single playbook:
+\begin{lstlisting}[language=yaml, caption=Orchestrating Web and Database Services]
+- name: Deploy web application
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - nginx
+          - mysql-server
+        state: present
+
+    - name: Configure Nginx
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+
+    - name: Create application database
+      mysql_db:
+        name: myapp
+        state: present
+
+    - name: Create database user
+      mysql_user:
+        name: appuser
+        password: secretpassword
+        priv: 'myapp.*:ALL'
+        state: present
+
+    - name: Start services
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      with_items:
+        - nginx
+        - mysql
+\end{lstlisting}
+
+\subsection{Breaking It Down}
+
+\textbf{O}ne playbook, two services:
+\begin{itemize}
+    \item The \texttt{apt} module installs both Nginx and MySQL.
+    \item The \texttt{template} module deploys the Nginx configuration.
+    \item The \texttt{mysql\_db} and \texttt{mysql\_user} modules handle database setup.
+    \item Finally, the \texttt{with\_items} loop ensures both services are started and enabled.
+\end{itemize}
+
+\textbf{N}ow you've got a fully functional web application with a database backend, deployed automatically. It's efficient, repeatable, and scalable.
+
+
+\section{Wrapping Up}
+
+You've just seen Ansible in action, tackling real-world problems like deploying web servers, configuring databases, and orchestrating services. These examples are just the beginning. The more you use Ansible, the more you'll discover its potential.
+
+\vspace{1em}
+\textit{In the next chapter, we'll explore dynamic inventories to make managing complex environments even easier. Ready to dive deeper? Let's go.}
