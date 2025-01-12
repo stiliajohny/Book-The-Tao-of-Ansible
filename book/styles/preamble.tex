@@ -1,0 +1,198 @@
+% Preamble for global settings
+\usepackage[utf8]{inputenc}        % UTF-8 encoding
+
+% KDP-specific settings first
+\usepackage[cmyk]{xcolor}          % CMYK color space for print
+
+% KDP-specific geometry
+\usepackage[paperwidth=6in,
+            paperheight=9in,
+            top=0.75in,
+            bottom=0.75in,
+            outer=0.5in,
+            inner=0.75in,
+            bindingoffset=0.125in,
+            showframe=false]{geometry}
+
+% Other packages first
+\usepackage{graphicx}              % Include images
+\usepackage{listings}              % Code listings
+\usepackage{amsmath}               % Math environments
+\usepackage{setspace}              % Adjust line spacing
+\usepackage{tocloft}               % Enhanced Table of Contents formatting
+\usepackage{fancyhdr}              % Header and footer customization
+\usepackage{url}                   % Handle underscores in text mode
+\usepackage{titlesec}              % Control chapter spacing
+
+% Hyperref should be loaded last with proper options
+\usepackage[pdfa,
+    unicode=true,
+    pdfencoding=auto,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    pdfborder={0 0 0}]{hyperref}
+
+% Font settings
+\usepackage{mathpazo}             % Palatino for main text and math
+\usepackage[scaled=0.95]{helvet}  % Helvetica for sans serif
+\usepackage{courier}              % Courier for monospace/code
+\usepackage{enumitem}             % Enhanced list formatting
+\renewcommand{\familydefault}{\rmdefault}  % Set Palatino as default font
+
+% Paragraph settings
+\setlength{\parindent}{0pt}  % Remove paragraph indentation
+\setlength{\parskip}{1em}    % Add vertical space between paragraphs
+
+% Other packages
+\usepackage{graphicx}              % Include images
+\usepackage{listings}              % Code listings
+\usepackage{amsmath}               % Math environments
+\usepackage{setspace}              % Adjust line spacing
+\usepackage{tocloft}               % Enhanced Table of Contents formatting
+\usepackage{fancyhdr}              % Header and footer customization
+\usepackage{url}                   % Handle underscores in text mode
+\usepackage{titlesec}              % Control chapter spacing
+
+% Define colors and hyperref settings
+\definecolor{links}{cmyk}{1,0.4,0,0} % Professional blue for links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=links,
+    filecolor=links,
+    urlcolor=links,
+    citecolor=links,
+    pdftitle={The Tao of Ansible},
+    pdfauthor={Ioannis Stylianakos ( a.k.a. John Stilia)},
+    pdfsubject={Ansible Configuration Management},
+    pdfkeywords={Ansible, DevOps, Automation, Configuration Management},
+    pdfproducer={Ioannis Stylianakos ( a.k.a. John Stilia)},
+    pdfcreator={Ioannis Stylianakos ( a.k.a. John Stilia)}
+}
+
+% Set line spacing to 1.15 (KDP recommended)
+\setstretch{1.15}
+
+% Page style configuration
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+
+% For bottom center page numbers (uncomment one of these options)
+\fancyfoot[C]{\thepage}           % Option 1: Center bottom page numbers
+
+% For outer margin page numbers (alternative option)
+% \fancyfoot[LE,RO]{\thepage}     % Option 2: Outer margins (Left on Even, Right on Odd pages)
+
+\fancyhead{}                       % Clear header
+\renewcommand{\headrulewidth}{0pt} % Remove header rule
+
+% Special style for chapter pages
+\fancypagestyle{plain}{%
+    \fancyhf{}                     % Clear all header and footer fields
+    \fancyfoot[C]{\thepage}        % Page number at bottom center
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Customize code listings
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny\color{black},
+    frame=single,
+    xleftmargin=10pt,
+    showstringspaces=false
+}
+
+% Define custom commands
+\newcommand{\ansible}{\texttt{ansible}}
+
+% Define YAML language for listings
+\lstdefinelanguage{yaml}{
+    keywords={true,false,null,y,n},
+    keywordstyle=\color{black}\bfseries,
+    basicstyle=\ttfamily\footnotesize,
+    sensitive=false,
+    showstringspaces=false,
+    comment=[l]{\#},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{black}\ttfamily,
+    stringstyle=\color{black}\ttfamily,
+    moredelim=[l][\color{black}]{\&},
+    moredelim=[l][\color{black}]{*},
+    moredelim=**[il][\color{black}]{:},
+    morestring=[b]',
+    morestring=[b]",
+    literate =    {---}{{\textcolor{black}{---}}}{3}
+                  {>}{{\textcolor{black}{>}}}1
+                  {|}{{\textcolor{black}{|}}}1
+                  {\ -\ }{{\textcolor{black}{\ -\ }}}3,
+    moredelim=[l][\color{black}]{:},
+}
+
+% Define plain language for listings
+\lstdefinelanguage{plain}{
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    showstringspaces=false
+}
+
+% Define nginx language for listings
+\lstdefinelanguage{nginx}{
+  keywords={server, location, listen, root, index, proxy_pass},
+  sensitive=false,
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+% Define ini language for listings
+\lstdefinelanguage{ini}{
+  morecomment=[l]{\#},
+  morecomment=[l]{;},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+% Define python language for listings
+\lstdefinelanguage{python}{
+  keywords={def, class, return, None, raise, import, from, for, while, if, else, elif, try, except, finally, with, as, in, True, False},
+  sensitive=true,
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+% Define bash language for listings
+\lstdefinelanguage{bash}{
+  keywords={if, then, else, fi, for, while, do, done, case, esac, break, continue, return},
+  sensitive=true,
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+% Table of Contents formatting
+\renewcommand{\cftchapfont}{\normalfont}          % Chapter font in ToC
+\renewcommand{\cftchappagefont}{\normalfont}      % Page number font for chapters
+\setcounter{tocdepth}{2}                          % Show chapters and sections in ToC
+\setlength{\cftbeforechapskip}{1em}              % Space between chapters
+\setlength{\cftchapindent}{0em}                  % Chapter indent
+\setlength{\cftsecindent}{2em}                   % Section indent
+\setlength{\cftsubsecindent}{4em}                % Subsection indent
+\renewcommand{\cfttoctitlefont}{\normalfont\Large\bfseries} % ToC title font
+\renewcommand{\cftaftertoctitle}{\thispagestyle{plain}}     % ToC page style
+
+% Set consistent page style for ToC
+\renewcommand{\contentsname}{\normalfont\Large\bfseries Contents}
+\renewcommand{\cftbeforetoctitleskip}{0pt}
+\renewcommand{\cftaftertoctitleskip}{1em}
+
+% Control chapter spacing
+\titlespacing*{\chapter}{0pt}{20pt}{20pt}  % Reduce space before and after chapters
+\titlespacing*{\section}{0pt}{12pt}{12pt}  % Consistent section spacing
