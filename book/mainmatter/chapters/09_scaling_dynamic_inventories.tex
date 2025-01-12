@@ -1,0 +1,203 @@
+\chapter{Scaling with Dynamic Inventories}
+
+When your infrastructure grows from a handful of servers to hundreds--or even thousands--keeping track of them manually becomes impossible. That's where dynamic inventories come in. They're like Ansible's way of saying, “Don't worry, I've got this.”
+
+In this chapter, we'll cover:
+\begin{itemize}
+    \item What dynamic inventories are and why they're awesome.
+    \item How to use dynamic inventory plugins with cloud providers like AWS and GCP.
+    \item Creating a custom dynamic inventory script for unique use cases.
+\end{itemize}
+
+By the end, you'll feel like a scaling superhero, ready to automate with confidence no matter how large your infrastructure gets.
+
+
+\section{Introduction to Dynamic Inventory Plugins}
+
+Let's start with the basics: What is a dynamic inventory? A static inventory is just a text file where you manually list your servers. It's great for small setups but falls apart when servers are constantly coming and going. A dynamic inventory, on the other hand, generates this list automatically based on your environment.
+
+Think of it like a smart grocery list. Instead of you writing down every item, your fridge just knows what you need.
+
+\subsection{How It Works}
+
+Dynamic inventory plugins integrate with your infrastructure to fetch the current state of your resources. Whether you're running on AWS, GCP, or something else, these plugins can:
+\begin{itemize}
+    \item Fetch all your instances and group them by tags or regions.
+    \item Update the inventory in real time, so you're never working with outdated data.
+    \item Scale effortlessly as you add or remove servers.
+\end{itemize}
+
+\textbf{S}o, why write a static file when Ansible can do the work for you?
+
+\subsection{Built-In Plugins}
+
+Ansible includes plugins for many popular platforms:
+\begin{itemize}
+    \item AWS
+    \item GCP
+    \item Azure
+    \item Kubernetes
+\end{itemize}
+
+These plugins let you connect to your cloud provider and pull in your infrastructure details dynamically. No more manual updates.
+
+
+\section{Using AWS Dynamic Inventory}
+
+If you're running your infrastructure on AWS, the AWS dynamic inventory plugin is a game-changer. Let's set it up.
+
+\subsection{Installing the Required Tools}
+
+First, you'll need the AWS CLI and the \texttt{boto3} Python library:
+\begin{lstlisting}[language=bash, caption=Installing AWS Tools]
+pip install boto3
+pip install botocore
+\end{lstlisting}
+
+\textbf{C}onfigure the AWS CLI with your credentials:
+\begin{lstlisting}[language=bash, caption=Configuring AWS CLI]
+aws configure
+\end{lstlisting}
+
+\subsection{Configuring the Plugin}
+
+Create a file called \texttt{aws\_inventory.yml}:
+\begin{lstlisting}[language=yaml, caption=AWS Inventory Plugin Configuration]
+plugin: aws_ec2
+regions:
+  - us-east-1
+filters:
+  tag:Environment: production
+keyed_groups:
+  - key: tags.Name
+    prefix: instance
+\end{lstlisting}
+
+Here's what's happening:
+\begin{itemize}
+    \item \texttt{plugin: aws\_ec2} tells Ansible to use the AWS plugin.
+    \item \texttt{regions} specifies which AWS regions to query.
+    \item \texttt{filters} limits results to instances with the tag \texttt{Environment: production}.
+    \item \texttt{keyed\_groups} creates groups based on the \texttt{Name} tag.
+\end{itemize}
+
+\subsection{Running a Playbook with Dynamic Inventory}
+
+Use the \texttt{-i} flag to specify the dynamic inventory file:
+\begin{lstlisting}[language=bash, caption=Running a Playbook with AWS Dynamic Inventory]
+ansible-playbook -i aws_inventory.yml deploy.yml
+\end{lstlisting}
+
+Ansible dynamically queries AWS for the latest inventory and runs your playbook. No static files, no hassle.
+
+
+\section{Using GCP Dynamic Inventory}
+
+Running on Google Cloud Platform (GCP)? Ansible has you covered. The process is similar to AWS, but let's break it down.
+
+\subsection{Installing the GCP SDK}
+
+Install the GCP SDK and authenticate:
+\begin{lstlisting}[language=bash, caption=Installing GCP SDK]
+sudo apt-get install google-cloud-sdk
+gcloud auth application-default login
+\end{lstlisting}
+
+\subsection{Configuring the Plugin}
+
+Create a file called \texttt{gcp\_inventory.yml}:
+\begin{lstlisting}[language=yaml, caption=GCP Inventory Plugin Configuration]
+plugin: gcp_compute
+projects:
+  - my-gcp-project
+filters:
+  - status = RUNNING
+keyed_groups:
+  - key: labels.env
+    prefix: env
+\end{lstlisting}
+
+This configuration pulls running instances from your GCP project and groups them by the \texttt{env} label.
+
+\subsection{Running a Playbook with GCP Inventory}
+
+Just like with AWS, use the \texttt{-i} flag:
+\begin{lstlisting}[language=bash, caption=Running a Playbook with GCP Inventory]
+ansible-playbook -i gcp_inventory.yml deploy.yml
+\end{lstlisting}
+
+\textbf{A}gain, no static files. Ansible does all the heavy lifting.
+
+
+\section{Creating a Custom Dynamic Inventory Script}
+
+Sometimes, your environment doesn't fit neatly into a cloud provider plugin. Maybe you're using an on-premises solution or a custom API. In these cases, you can write your own dynamic inventory script.
+
+\subsection{The Basics of a Custom Script}
+
+A dynamic inventory script must:
+\begin{itemize}
+    \item Output JSON data with the inventory structure.
+    \item Respond to \texttt{--list} to return all hosts.
+    \item Respond to \texttt{--host} to return variables for a specific host.
+\end{itemize}
+
+Here's an example script in Python:
+\begin{lstlisting}[language=python, caption=Custom Inventory Script]
+#!/usr/bin/env python
+import json
+
+def get_inventory():
+    inventory = {
+        "webservers": {
+            "hosts": ["192.168.1.10", "192.168.1.11"],
+            "vars": {
+                "http_port": 80
+            }
+        },
+        "_meta": {
+            "hostvars": {
+                "192.168.1.10": {"ansible_user": "admin"},
+                "192.168.1.11": {"ansible_user": "admin"}
+            }
+        }
+    }
+    return inventory
+
+if __name__ == "__main__":
+    import sys
+    if "--list" in sys.argv:
+        print(json.dumps(get_inventory()))
+    elif "--host" in sys.argv:
+        print(json.dumps({}))
+\end{lstlisting}
+
+\subsection{Using the Custom Script}
+
+Make the script executable:
+\begin{lstlisting}[language=bash, caption=Making the Script Executable]
+chmod +x custom_inventory.py
+\end{lstlisting}
+
+Run your playbook with the script as the inventory source:
+\begin{lstlisting}[language=bash, caption=Using a Custom Inventory Script]
+ansible-playbook -i custom_inventory.py deploy.yml
+\end{lstlisting}
+
+\textbf{L}ook at that--your custom inventory is now part of your Ansible workflow.
+
+
+\section{Why Dynamic Inventories Matter}
+
+Dynamic inventories are all about \textbf{I}ntelligence and scalability. They adapt to your environment, save you time, and make managing large infrastructures feel effortless.
+
+\textbf{N}o matter where your servers are--cloud, on-prem, or somewhere in between--dynamic inventories ensure your playbooks always know what's going on.
+
+
+\section{Wrapping Up}
+
+Dynamic inventories are one of Ansible's most powerful features. They let you scale without breaking a sweat, whether you're running a handful of servers or managing a \textbf{g}lobal fleet.
+
+\vspace{1em}
+
+\textit{In the next chapter, we'll explore securing your playbooks with Ansible Vault. Ready to lock things down? Let's go.}
