@@ -1,0 +1,51 @@
+name: Build and Attach Assets
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Build Book
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-xetex \
+            pandoc \
+            calibre
+
+      - name: Build PDF
+        run: make pdf
+
+      - name: Build ePUB
+        run: make epub
+
+      - name: Upload PDF Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./book/main.pdf
+          asset_name: The-Tao-of-Ansible.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload ePUB Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./book/The-Tao-of-Ansible.epub
+          asset_name: The-Tao-of-Ansible.epub
+          asset_content_type: application/epub+zip
