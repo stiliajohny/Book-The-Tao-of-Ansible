@@ -1,71 +1,134 @@
+# Docker configuration
+DOCKER_IMAGE := tao-ansible-builder
+DOCKER_TAG ?= latest
+DOCKER_WORKDIR := /workspace
+DOCS_DIR := $(PWD)/docs
+
+# GitHub Container Registry configuration
+GHCR_REGISTRY := ghcr.io
+DOCKER_REGISTRY ?= $(GHCR_REGISTRY)
+DOCKER_OWNER := stiliajohny
+DOCKER_REPO := $(DOCKER_REGISTRY)/$(DOCKER_OWNER)/$(DOCKER_IMAGE)
+DOCKER_RUN := docker run --rm -v $(PWD):$(DOCKER_WORKDIR) -v $(DOCS_DIR):/docs -w $(DOCKER_WORKDIR) $(DOCKER_REPO):$(DOCKER_TAG)
+
+# Git version information
+GIT_SHA := $(shell git rev-parse --short HEAD)
+GIT_TAG := $(shell git describe --tags --abbrev=0 2>/dev/null || echo "v0.1.0")
+
 # Main output targets
-all: pdf epub html kindle pdf-with-cover epub-with-cover
+all: docker-build pdf epub html kindle pdf-with-cover epub-with-cover ## Build all formats (PDF, EPUB, HTML, Kindle)
+
+# Docker targets
+docker-build: ## Build the Docker image
+	@echo "Building Docker image..."
+	docker build \
+		-t $(DOCKER_IMAGE):$(DOCKER_TAG) \
+		-f docker/Dockerfile .
+	@echo "Tagging Docker image for GHCR..."
+	docker tag $(DOCKER_IMAGE):$(DOCKER_TAG) $(DOCKER_REPO):$(DOCKER_TAG)
+	docker tag $(DOCKER_IMAGE):$(DOCKER_TAG) $(DOCKER_REPO):$(GIT_TAG)
+	docker tag $(DOCKER_IMAGE):$(DOCKER_TAG) $(DOCKER_REPO):$(GIT_SHA)
+
+docker-all: ## Run all build commands inside Docker
+	$(DOCKER_RUN) make pdf epub html kindle pdf-with-cover epub-with-cover
+
+docker-clean: ## Clean Docker images and temporary files
+	$(DOCKER_RUN) make clean
+	docker rmi $(DOCKER_REPO):$(DOCKER_TAG) || true
+	docker rmi $(DOCKER_REPO):$(GIT_TAG) || true
+	docker rmi $(DOCKER_REPO):$(GIT_SHA) || true
+
+# Docker publish targets
+docker-login: ## Login to GitHub Container Registry
+	@echo "Logging into GitHub Container Registry..."
+	@if [ -z "$$CR_PAT" ]; then \
+		echo "Error: CR_PAT environment variable is not set"; \
+		echo "Please run: read CR_PAT"; \
+		echo "Then paste your GitHub Personal Access Token"; \
+		exit 1; \
+	fi
+	@echo "$$CR_PAT" | docker login ghcr.io -u $(DOCKER_OWNER) --password-stdin
+
+docker-push: docker-build docker-login ## Push Docker image to GitHub Container Registry
+	@echo "Publishing Docker image to $(DOCKER_REPO)..."
+	docker push $(DOCKER_REPO):$(DOCKER_TAG)
+	docker push $(DOCKER_REPO):$(GIT_TAG)
+	docker push $(DOCKER_REPO):$(GIT_SHA)
+
+# Version information
+version: ## Display version information
+	@echo "Version: $(GIT_TAG)"
+	@echo "Commit: $(GIT_SHA)"
+	@echo "Docker Image: $(DOCKER_REPO):$(DOCKER_TAG)"
 
 # Build the PDF with bibliography
-pdf: book/main.tex
-	cd book && pdflatex -interaction=nonstopmode main.tex
-	cd book && bibtex main
-	cd book && pdflatex -interaction=nonstopmode main.tex
-	cd book && pdflatex -interaction=nonstopmode main.tex
+pdf: docker-build ## Build the PDF with bibliography
+	$(DOCKER_RUN) bash -c "cd book && pdflatex -interaction=nonstopmode main.tex && \
+		bibtex main && \
+		pdflatex -interaction=nonstopmode main.tex && \
+		pdflatex -interaction=nonstopmode main.tex && \
+		mv main.pdf /docs/The-Tao-of-Ansible.pdf"
 
 # Build PDF with cover page
-pdf-with-cover: pdf
-	cd book && convert ../images/Kindle\ eBook/ebook-cover-1.jpg cover-temp.pdf
-	cd book && pdftk cover-temp.pdf main.pdf cat output The-Tao-of-Ansible-with-cover.pdf
-	cd book && rm cover-temp.pdf
+pdf-with-cover: pdf ## Build PDF with cover page
+	$(DOCKER_RUN) bash -c "cd book && convert ../images/Kindle\ eBook/ebook-cover-1.jpg cover-temp.pdf && \
+		pdftk cover-temp.pdf /docs/The-Tao-of-Ansible.pdf cat output /docs/The-Tao-of-Ansible-with-cover.pdf && \
+		rm cover-temp.pdf"
 
 # Build ePUB version
-epub: pdf
-	cd book && pandoc main.tex -o The-Tao-of-Ansible.epub \
+epub: pdf ## Build ePUB version
+	$(DOCKER_RUN) bash -c "cd book && pandoc main.tex -o /docs/The-Tao-of-Ansible.epub \
 		--toc \
 		--toc-depth=3 \
 		--epub-cover-image=../images/Kindle\ eBook/ebook-cover-1.jpg \
-		--metadata title="The Tao of Ansible" \
-		--metadata author="John Stilia"
+		--metadata title='The Tao of Ansible' \
+		--metadata author='John Stilia'"
 
 # Build ePUB with cover page
-epub-with-cover: epub
-	cp "images/Kindle eBook/ebook-cover-1.jpg" book/cover.jpg
-	cd book && pandoc main.tex -o The-Tao-of-Ansible-with-cover.epub \
+epub-with-cover: epub ## Build ePUB with cover page
+	$(DOCKER_RUN) bash -c "cp images/Kindle\ eBook/ebook-cover-1.jpg book/cover.jpg && \
+		cd book && pandoc main.tex -o /docs/The-Tao-of-Ansible-with-cover.epub \
 		--toc \
 		--toc-depth=3 \
 		--epub-cover-image=cover.jpg \
-		--metadata title="The Tao of Ansible" \
-		--metadata author="John Stilia"
-	rm -f book/cover.jpg
+		--metadata title='The Tao of Ansible' \
+		--metadata author='John Stilia' && \
+		rm -f cover.jpg"
 
 # Build HTML version
-html: pdf
-	cd book && htlatex main.tex "xhtml,charset=utf-8" " -cunihtf -utf8"
+html: pdf ## Build HTML version
+	$(DOCKER_RUN) bash -c "cd book && htlatex main.tex 'xhtml,charset=utf-8' ' -cunihtf -utf8' && \
+		mv main.html /docs/tao-ansible.html && \
+		mv *.css /docs/"
 
 # Build Kindle version (requires calibre's ebook-convert)
-kindle: epub
-	cd book && ebook-convert The-Tao-of-Ansible.epub The-Tao-of-Ansible.mobi \
-		--output-profile kindle
+kindle: epub ## Build Kindle version (requires calibre's ebook-convert)
+	$(DOCKER_RUN) bash -c "cd book && ebook-convert /docs/The-Tao-of-Ansible.epub /docs/The-Tao-of-Ansible.mobi \
+		--output-profile kindle"
 
 # Quick build without bibliography
-quick: book/main.tex
+quick: book/main.tex ## Quick build without bibliography
 	cd book && pdflatex -interaction=nonstopmode main.tex
 
 # Clean auxiliary files
-clean:
+clean: ## Clean auxiliary files
 	cd book && rm -f *.aux *.log *.out *.toc *.lof *.lot *.bbl *.blg *.fls *.fdb_latexmk *.log
 	cd book && rm -f *.4ct *.4tc *.idv *.lg *.tmp *.xref *.dvi cover-temp.pdf
 
 # Deep clean - removes all generated files
-distclean: clean
+distclean: clean ## Deep clean - removes all generated files
 	cd book && rm -f *.pdf *.html *.css *.epub *.mobi *-with-cover.*
 
 # Watch for changes and rebuild (requires latexmk)
-watch:
+watch: ## Watch for changes and rebuild (requires latexmk)
 	cd book && latexmk -pvc -pdf main.tex
 
 # Generate only the bibliography
-bib:
+bib: ## Generate only the bibliography
 	cd book && bibtex main
 
 # Check dependencies
-check-deps:
+check-deps: ## Check dependencies
 	@echo "Checking dependencies..."
 	@which pdflatex >/dev/null 2>&1 || echo "Missing: pdflatex (texlive)"
 	@which pandoc >/dev/null 2>&1 || echo "Missing: pandoc"
@@ -77,39 +140,17 @@ check-deps:
 	@which latexmk >/dev/null 2>&1 || echo "Missing: latexmk (texlive)"
 	@echo "All dependency checks completed."
 
-# Install dependencies on macOS using Homebrew
-install-deps-macos:
-	@echo "Installing dependencies for macOS..."
-	@which brew >/dev/null 2>&1 || { echo "Homebrew is required. Install from https://brew.sh"; exit 1; }
-	brew install \
-		mactex \
-		pandoc \
-		pdftk-java \
-		imagemagick \
-		calibre
-	brew tap homebrew/cask && brew install --cask basictex
-	sudo tlmgr update --self
-	sudo tlmgr install \
-		latexmk \
-		tex4ht \
-		collection-fontsrecommended \
-		collection-latexextra
-	@echo "macOS dependencies installed. You may need to restart your terminal."
+# Install dependencies commands are now handled by Dockerfile
+install-deps-ubuntu: ## Install dependencies on Ubuntu (handled by Dockerfile)
+	@echo "Please use 'make docker-build' instead. Dependencies are managed in the Dockerfile."
 
-# Install dependencies on Ubuntu/Debian
-install-deps-ubuntu:
-	@echo "Installing dependencies for Ubuntu..."
-	sudo apt-get update
-	sudo apt-get install -y \
-		texlive-full \
-		texlive-xetex \
-		texlive-extra-utils \
-		pandoc \
-		pdftk \
-		imagemagick \
-		calibre \
-		latexmk \
-		tex4ht
-	@echo "Ubuntu dependencies installed."
+install-deps-macos: ## Install dependencies on macOS (handled by Dockerfile)
+	@echo "Please use 'make docker-build' instead. Dependencies are managed in the Dockerfile."
 
-.PHONY: all pdf epub html kindle pdf-with-cover epub-with-cover quick clean distclean watch bib check-deps install-deps-macos install-deps-ubuntu
+# Help target
+help: ## Show this help message
+	@echo "Available targets:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'
+
+.PHONY: all pdf epub html kindle pdf-with-cover epub-with-cover quick clean distclean watch bib docker-build docker-all docker-clean docker-login docker-push version help
