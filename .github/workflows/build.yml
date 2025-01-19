@@ -2,7 +2,10 @@ name: Build and Attach Assets
 
 on:
   release:
-    types: [published]
+    types:
+      - created
+      - published
+      - released
   push:
     branches: [master]
   pull_request:
@@ -42,6 +45,21 @@ jobs:
           cd book
           zip -r ../The-Tao-of-Ansible-html.zip *.html *.css
 
+      - name: Debug Release Info
+        if: github.event_name == 'release'
+        run: |
+          echo "Release Event Type: ${{ github.event.action }}"
+          echo "Release Tag: ${{ github.event.release.tag_name }}"
+          echo "Release Name: ${{ github.event.release.name }}"
+          echo "Release ID: ${{ github.event.release.id }}"
+          echo "Files to be attached:"
+          ls -l book/main.pdf || echo "main.pdf not found"
+          ls -l book/The-Tao-of-Ansible-with-cover.pdf || echo "cover PDF not found"
+          ls -l book/The-Tao-of-Ansible.epub || echo "epub not found"
+          ls -l book/The-Tao-of-Ansible-with-cover.epub || echo "cover epub not found"
+          ls -l book/The-Tao-of-Ansible.mobi || echo "mobi not found"
+          ls -l The-Tao-of-Ansible-html.zip || echo "html zip not found"
+
       - name: Attach Assets to Release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v1
@@ -53,5 +71,8 @@ jobs:
             book/The-Tao-of-Ansible-with-cover.epub
             book/The-Tao-of-Ansible.mobi
             The-Tao-of-Ansible-html.zip
+          tag_name: ${{ github.event.release.tag_name }}
+          draft: false
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

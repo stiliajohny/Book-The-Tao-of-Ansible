@@ -11,12 +11,96 @@
         }
     ],
     "plugins": [
-        "@semantic-release/commit-analyzer",
-        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/commit-analyzer",
+            {
+                "preset": "angular",
+                "releaseRules": [
+                    {
+                        "type": "docs",
+                        "scope": "README",
+                        "release": "patch"
+                    },
+                    {
+                        "type": "refactor",
+                        "release": "patch"
+                    },
+                    {
+                        "type": "style",
+                        "release": "patch"
+                    },
+                    {
+                        "type": "chore",
+                        "release": "patch"
+                    }
+                ],
+                "parserOpts": {
+                    "noteKeywords": [
+                        "BREAKING CHANGE",
+                        "BREAKING CHANGES"
+                    ]
+                }
+            }
+        ],
+        [
+            "@semantic-release/release-notes-generator",
+            {
+                "preset": "angular",
+                "presetConfig": {
+                    "types": [
+                        {
+                            "type": "feat",
+                            "section": "✨ Features"
+                        },
+                        {
+                            "type": "fix",
+                            "section": "🐛 Bug Fixes"
+                        },
+                        {
+                            "type": "docs",
+                            "section": "📚 Documentation"
+                        },
+                        {
+                            "type": "style",
+                            "section": "💎 Style"
+                        },
+                        {
+                            "type": "refactor",
+                            "section": "♻️ Code Refactoring"
+                        },
+                        {
+                            "type": "perf",
+                            "section": "🚀 Performance Improvements"
+                        },
+                        {
+                            "type": "test",
+                            "section": "🧪 Tests"
+                        },
+                        {
+                            "type": "build",
+                            "section": "🛠 Build System"
+                        },
+                        {
+                            "type": "ci",
+                            "section": "⚙️ Continuous Integration"
+                        },
+                        {
+                            "type": "chore",
+                            "section": "🔧 Chores"
+                        },
+                        {
+                            "type": "revert",
+                            "section": "⏪ Reverts"
+                        }
+                    ]
+                }
+            }
+        ],
         [
             "@semantic-release/changelog",
             {
-                "changelogFile": "CHANGELOG.md"
+                "changelogFile": "CHANGELOG.md",
+                "changelogTitle": "# 📚 The Tao of Ansible - Changelog"
             }
         ],
         [
@@ -25,13 +109,18 @@
                 "assets": [
                     "CHANGELOG.md"
                 ],
-                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                "message": "docs(changelog): update changelog for ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ],
         [
             "@semantic-release/github",
             {
-                "assets": []
+                "assets": [
+                    "CHANGELOG.md"
+                ],
+                "successComment": ":tada: This release is now available as `${nextRelease.version}`",
+                "failTitle": "Release Failed",
+                "failComment": "The release failed due to the following errors:\n- ${errors.map(error => error.message).join('\n- ')}"
             }
         ]
     ]
