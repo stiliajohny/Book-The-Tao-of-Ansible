@@ -3,6 +3,10 @@ name: Build and Attach Assets
 on:
   release:
     types: [published]
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 permissions:
   contents: write
@@ -39,6 +43,7 @@ jobs:
           zip -r ../The-Tao-of-Ansible-html.zip *.html *.css
 
       - name: Attach Assets to Release
+        if: github.event_name == 'release'
         uses: softprops/action-gh-release@v1
         with:
           files: |
