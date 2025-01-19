@@ -1,20 +1,22 @@
-name: Build Book
+name: Build and Attach Assets
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   release:
-    types: [created]
+    types: [published]
+
+permissions:
+  contents: write
 
 jobs:
   build:
+    name: Build and Attach Assets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: make install-deps-ubuntu
@@ -22,92 +24,29 @@ jobs:
       - name: Check Dependencies
         run: make check-deps
 
-      - name: Build PDF
-        run: make pdf
-
-      - name: Build PDF with Cover
-        run: make pdf-with-cover
-
-      - name: Build ePUB
-        run: make epub
-
-      - name: Build ePUB with Cover
-        run: make epub-with-cover
-
-      - name: Build HTML
-        run: make html
-
-      - name: Build Kindle/MOBI
-        run: make kindle
-
-      - name: Upload PDF Asset
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./book/main.pdf
-          asset_name: The-Tao-of-Ansible.pdf
-          asset_content_type: application/pdf
-
-      - name: Upload PDF with Cover Asset
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./book/The-Tao-of-Ansible-with-cover.pdf
-          asset_name: The-Tao-of-Ansible-with-cover.pdf
-          asset_content_type: application/pdf
-
-      - name: Upload ePUB Asset
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./book/The-Tao-of-Ansible.epub
-          asset_name: The-Tao-of-Ansible.epub
-          asset_content_type: application/epub+zip
-
-      - name: Upload ePUB with Cover Asset
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./book/The-Tao-of-Ansible-with-cover.epub
-          asset_name: The-Tao-of-Ansible-with-cover.epub
-          asset_content_type: application/epub+zip
-
-      - name: Upload MOBI Asset
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./book/The-Tao-of-Ansible.mobi
-          asset_name: The-Tao-of-Ansible.mobi
-          asset_content_type: application/x-mobipocket-ebook
+      - name: Build All Formats
+        run: |
+          make pdf
+          make pdf-with-cover
+          make epub
+          make epub-with-cover
+          make html
+          make kindle
 
       - name: Archive HTML Build
-        if: github.event_name == 'release'
         run: |
           cd book
           zip -r ../The-Tao-of-Ansible-html.zip *.html *.css
 
-      - name: Upload HTML Archive
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
+      - name: Attach Assets to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            book/main.pdf
+            book/The-Tao-of-Ansible-with-cover.pdf
+            book/The-Tao-of-Ansible.epub
+            book/The-Tao-of-Ansible-with-cover.epub
+            book/The-Tao-of-Ansible.mobi
+            The-Tao-of-Ansible-html.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./The-Tao-of-Ansible-html.zip
-          asset_name: The-Tao-of-Ansible-html.zip
-          asset_content_type: application/zip
