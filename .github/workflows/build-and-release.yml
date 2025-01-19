@@ -1,0 +1,61 @@
+name: Build and Release
+
+on:
+  push:
+    paths:
+      - "docker/Dockerfile"
+      - "book/**"
+  pull_request:
+    paths:
+      - "docker/Dockerfile"
+      - "book/**"
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest -f docker/Dockerfile .
+          docker push ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest
+
+  build-latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull Docker image
+        run: docker pull ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest
+
+      - name: Build PDF
+        run: docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest make pdf
+
+      - name: Build EPUB
+        run: docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest make epub
+
+      - name: Build HTML
+        run: docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest make html
+
+      - name: Build Kindle
+        run: docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest make kindle
