@@ -1,14 +1,16 @@
 name: Build and Release
 
 on:
-  push:
-    paths:
-      - "docker/Dockerfile"
-      - "book/**"
-  pull_request:
-    paths:
-      - "docker/Dockerfile"
-      - "book/**"
+  [push, pull_request]
+
+  #   push:
+#     paths:
+#       - "docker/Dockerfile"
+#       - "book/**"
+#   pull_request:
+#     paths:
+#       - "docker/Dockerfile"
+#       - "book/**"
 
 jobs:
   build-docker:
