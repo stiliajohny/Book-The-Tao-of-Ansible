@@ -23,7 +23,7 @@ When writing Ansible tasks, the goal is always the same: describe \textbf{t}he d
 Let's say you want to install the \texttt{htop} package. Here's how you might write a task:
 \begin{lstlisting}[language=yaml, caption=Installing a Package]
 - name: Ensure htop is installed
-  apt:
+  ansible.builtin.package:
     name: htop
     state: present
 \end{lstlisting}
@@ -35,7 +35,7 @@ Notice the magic in \texttt{state: present}. Ansible checks if \texttt{htop} is 
 Now, let's create a directory. Simple, right? Here's how:
 \begin{lstlisting}[language=yaml, caption=Creating a Directory]
 - name: Create a directory for logs
-  file:
+  ansible.builtin.file:
     path: /var/log/myapp
     state: directory
 \end{lstlisting}
@@ -47,7 +47,7 @@ If the directory \textbf{e}xists, Ansible moves on. If it doesn't, Ansible creat
 Starting a service might seem like a no-brainer, but idempotence takes it a step further:
 \begin{lstlisting}[language=yaml, caption=Starting a Service]
 - name: Start and enable Nginx
-  service:
+  ansible.builtin.service:
     name: nginx
     state: started
     enabled: yes
@@ -71,17 +71,17 @@ Here's an example playbook that ties it all together:
   hosts: webservers
   tasks:
     - name: Ensure Apache is installed
-      apt:
+      ansible.builtin.package:
         name: apache2
         state: present
 
     - name: Create a logs directory
-      file:
+      ansible.builtin.file:
         path: /var/log/apache2
         state: directory
 
     - name: Start and enable Apache
-      service:
+      ansible.builtin.service:
         name: apache2
         state: started
         enabled: yes

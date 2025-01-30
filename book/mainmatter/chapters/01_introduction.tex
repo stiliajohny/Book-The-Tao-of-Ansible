@@ -48,7 +48,7 @@ Here's an example of a simple playbook:
   hosts: webservers
   tasks:
     - name: Ensure Apache is installed
-      apt:
+      ansible.builtin.package:
         name: apache2
         state: present
 \end{lstlisting}

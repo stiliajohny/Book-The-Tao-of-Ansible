@@ -24,23 +24,23 @@ Here's a playbook to install and configure Nginx on a group of web servers:
 
   tasks:
     - name: Install Nginx
-      apt:
+      ansible.builtin.package:
         name: nginx
         state: present
 
     - name: Start and enable Nginx
-      service:
+      ansible.builtin.service:
         name: nginx
         state: started
         enabled: yes
 
     - name: Deploy Nginx configuration
-      template:
+      ansible.builtin.  template:
         src: nginx.conf.j2
         dest: /etc/nginx/nginx.conf
 
     - name: Restart Nginx to apply changes
-      service:
+      ansible.builtin.service:
         name: nginx
         state: restarted
 \end{lstlisting}
@@ -85,18 +85,18 @@ Here's a playbook to install and secure MySQL:
 
   tasks:
     - name: Install MySQL
-      apt:
+      ansible.builtin.package:
         name: mysql-server
         state: present
 
     - name: Start and enable MySQL
-      service:
+      ansible.builtin.service:
         name: mysql
         state: started
         enabled: yes
 
     - name: Secure MySQL installation
-      command: >
+      ansible.builtin.command: >
         mysql_secure_installation
         --use-default
 \end{lstlisting}
@@ -142,14 +142,14 @@ Here's how you can orchestrate multiple services in a single playbook:
 
   tasks:
     - name: Install required packages
-      apt:
+      ansible.builtin.package:
         name:
           - nginx
           - mysql-server
         state: present
 
     - name: Configure Nginx
-      template:
+      ansible.builtin.template:
         src: nginx.conf.j2
         dest: /etc/nginx/nginx.conf
 
@@ -166,7 +166,7 @@ Here's how you can orchestrate multiple services in a single playbook:
         state: present
 
     - name: Start services
-      service:
+      ansible.builtin.service:
         name: "{{ item }}"
         state: started
         enabled: yes

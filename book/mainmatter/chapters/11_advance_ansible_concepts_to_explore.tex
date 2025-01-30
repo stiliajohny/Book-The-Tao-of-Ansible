@@ -23,19 +23,19 @@ Handlers are like automation's version of a reset button-they run only when need
 Let's say you're managing a web server. If you update its configuration file, you don't want to restart the service unless something actually changes. That's where handlers come in. Here's an example:
 \begin{lstlisting}[language=yaml, caption=Using Handlers for Service Restarts]
 - name: Update Nginx configuration
-  copy:
+  ansible.builtin.copy:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
   notify: Restart Nginx
 
 - name: Start Nginx
-  service:
+  ansible.builtin.service:
     name: nginx
     state: started
 
 handlers:
   - name: Restart Nginx
-    service:
+    ansible.builtin.service:
       name: nginx
       state: restarted
 \end{lstlisting}
@@ -159,7 +159,7 @@ Loops in Ansible make repetitive tasks efficient and elegant.
 Here's an example of a basic loop:
 \begin{lstlisting}[language=yaml, caption=Installing Multiple Packages with Loops]
 - name: Install common packages
-  apt:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   loop:
@@ -173,7 +173,7 @@ Here's an example of a basic loop:
 With nested loops, you can handle more complex scenarios:
 \begin{lstlisting}[language=yaml, caption=Nested Loops Example]
 - name: Create directories
-  file:
+  ansible.builtin.file:
     path: "/var/{{ item.0 }}/{{ item.1 }}"
     state: directory
   with_nested:

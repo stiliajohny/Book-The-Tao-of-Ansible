@@ -23,7 +23,7 @@ Let's start with some common Ansible issues. If you've spent any time writing pl
 Here's an example of bad YAML:
 \begin{lstlisting}[language=yaml, caption=Bad YAML]
 - name: Install packages
-  apt
+  ansible.builtin.package:
     name: nginx
     state: present
 \end{lstlisting}
@@ -31,7 +31,7 @@ Here's an example of bad YAML:
 What's wrong? The \texttt{apt} module is missing a colon. Fix it like this:
 \begin{lstlisting}[language=yaml, caption=Correct YAML]
 - name: Install packages
-  apt:
+  ansible.builtin.package:
     name: nginx
     state: present
 \end{lstlisting}
@@ -48,7 +48,7 @@ If Ansible can't find a module, it's often because the module isn't installed or
 For example, \texttt{apt} works for Debian-based systems, but if you're on CentOS, you need \texttt{dnf} or \texttt{yum}:
 \begin{lstlisting}[language=yaml, caption=Correct Module for CentOS]
 - name: Install packages
-  yum:
+  ansible.builtin.package:
     name: httpd
     state: present
 \end{lstlisting}
@@ -60,11 +60,11 @@ Sometimes Ansible can't connect to a host. Here's how to debug it:
     \item Check your SSH configuration. Is the user and key correct?
     \item Use \texttt{ping} to test connectivity:
     \begin{lstlisting}[language=bash, caption=Testing Connectivity]
-ansible all -i inventory -m ping
+ansible all -i inventory -m ansible.builtin.ping
     \end{lstlisting}
     \item If the connection fails, add \texttt{-vvv} for more detail:
     \begin{lstlisting}[language=bash, caption=Verbose Output]
-ansible all -i inventory -m ping -vvv
+ansible all -i inventory -m ansible.builtin.ping -vvv
     \end{lstlisting}
 \end{itemize}
 
@@ -96,7 +96,7 @@ ansible-playbook -i inventory playbook.yml -vvv
 The \texttt{debug} module is a simple but powerful tool for troubleshooting. Use it to print variable values or confirm tasks are working as expected:
 \begin{lstlisting}[language=yaml, caption=Using the Debug Module]
 - name: Print variable value
-  debug:
+  ansible.builtin.debug:
     msg: "The hostname is {{ ansible_hostname }}"
 \end{lstlisting}
 
@@ -157,7 +157,7 @@ This is especially useful for tasks that modify configuratio\textbf{n} files.
 Always back up important files before running a playbook. You can automate this with Ansible:
 \begin{lstlisting}[language=yaml, caption=Backing Up a File]
 - name: Back up configuration file
-  copy:
+  ansible.builtin.copy:
     src: /etc/nginx/nginx.conf
     dest: /etc/nginx/nginx.conf.bak
 \end{lstlisting}

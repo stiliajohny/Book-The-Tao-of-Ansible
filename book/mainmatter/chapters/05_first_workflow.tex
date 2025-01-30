@@ -13,7 +13,7 @@ Let's start with something simple: installing packages. It's one of the most com
 Suppose you need to install \texttt{htop}, a handy tool for monitoring system resources. Here's how you'd write that task:
 \begin{lstlisting}[language=yaml, caption=Installing a Single Package]
 - name: Ensure htop is installed
-  apt:
+  ansible.builtin.package:
     name: htop
     state: present
 \end{lstlisting}
@@ -25,7 +25,7 @@ Suppose you need to install \texttt{htop}, a handy tool for monitoring system re
 What if you want to install several packages at once? No problem. Just list them:
 \begin{lstlisting}[language=yaml, caption=Installing Multiple Packages]
 - name: Install essential packages
-  apt:
+  ansible.builtin.package:
     name:
       - curl
       - git
@@ -48,7 +48,7 @@ Next up: files and directories. Creating, deleting, or modifying them is a breez
 Let's say you need a directory to store log files. Here's the task:
 \begin{lstlisting}[language=yaml, caption=Creating a Directory]
 - name: Create a logs directory
-  file:
+  ansible.builtin.file:
     path: /var/log/myapp
     state: directory
     mode: '0755'
@@ -61,12 +61,12 @@ Let's say you need a directory to store log files. Here's the task:
 Want to create or delete files? Use the same \texttt{file} module:
 \begin{lstlisting}[language=yaml, caption=Creating or Deleting Files]
 - name: Create a configuration file
-  file:
+  ansible.builtin.file:
     path: /etc/myapp/config.yaml
     state: touch
 
 - name: Delete an old log file
-  file:
+  ansible.builtin.file:
     path: /var/log/myapp/old.log
     state: absent
 \end{lstlisting}
@@ -78,7 +78,7 @@ In the first task, \texttt{state: touch} ensures the file exists (and creates it
 Sometimes you need to deploy a file to your servers. The \texttt{copy} module makes this easy:
 \begin{lstlisting}[language=yaml, caption=Copying a File]
 - name: Deploy a configuration file
-  copy:
+  ansible.builtin.copy:
     src: config.yaml
     dest: /etc/myapp/config.yaml
     mode: '0644'
@@ -95,7 +95,7 @@ Finally, let's talk about services. Whether it's a web server, a database, or a 
 Here's how to ensure a service (like Nginx) is running and starts automatically on boot:
 \begin{lstlisting}[language=yaml, caption=Starting and Enabling a Service]
 - name: Start and enable Nginx
-  service:
+  ansible.builtin.service:
     name: nginx
     state: started
     enabled: yes
@@ -108,7 +108,7 @@ Here's how to ensure a service (like Nginx) is running and starts automatically 
 Need to restart a service after changing its configuration? Here's how:
 \begin{lstlisting}[language=yaml, caption=Restarting a Service]
 - name: Restart Nginx
-  service:
+  ansible.builtin.service:
     name: nginx
     state: restarted
 \end{lstlisting}
@@ -123,24 +123,24 @@ Let's put everything together. Here's a playbook that installs Nginx, sets up a 
   hosts: webservers
   tasks:
     - name: Install Nginx
-      apt:
+      ansible.builtin.package:
         name: nginx
         state: present
 
     - name: Create logs directory
-      file:
+      ansible.builtin.file:
         path: /var/log/nginx
         state: directory
         mode: '0755'
 
     - name: Deploy configuration file
-      copy:
+      ansible.builtin.copy:
         src: nginx.conf
         dest: /etc/nginx/nginx.conf
         mode: '0644'
 
     - name: Start and enable Nginx
-      service:
+      ansible.builtin.service:
         name: nginx
         state: started
         enabled: yes

@@ -89,13 +89,13 @@ Now that Ansible is installed and your inventory file is set up, it's time to ru
 
 Let's start by testing connectivity to the hosts in your inventory file. Run the following command:
 \begin{lstlisting}[language=bash, caption=Ping All Hosts in Inventory]
-ansible all -i inventory -m ping
+ansible all -i inventory -m ansible.builtin.ping
 \end{lstlisting}
 
 \begin{itemize}
     \item \texttt{all}: Targets all hosts in the inventory file.
     \item \texttt{-i inventory}: Specifies the inventory file to use.
-    \item \texttt{-m ping}: Uses the \texttt{ping} module to test connectivity.
+    \item \texttt{-m ansible.builtin.ping}: Uses the \texttt{ansible.builtin.ping} module to test connectivity.
 \end{itemize}
 
 If everything is set up correctly, you'll see a response like this:
@@ -114,12 +114,12 @@ If everything is set up correctly, you'll see a response like this:
 
 Next, let's run a simple shell command on all the hosts. For example, to check the date on each machine:
 \begin{lstlisting}[language=bash, caption=Run Shell Command with Ansible]
-ansible all -i inventory -m shell -a "date"
+ansible all -i inventory -m ansible.builtin.shell -a "date"
 \end{lstlisting}
 
 In this command:
 \begin{itemize}
-    \item \texttt{-m shell}: Specifies the \texttt{shell} module.
+    \item \texttt{-m ansible.builtin.shell}: Specifies the \texttt{ansible.builtin.shell} module.
     \item \texttt{-a "date"}: Passes the \texttt{date} command as an argument.
 \end{itemize}
 
@@ -129,12 +129,12 @@ You'll see the current date and time from each host.
 
 Finally, let's install a package (e.g., \texttt{htop}) on the \texttt{webservers} group:
 \begin{lstlisting}[language=bash, caption=Install a Package]
-ansible webservers -i inventory -m apt -a "name=htop state=present"
+ansible webservers -i inventory -m ansible.builtin.package -a "name=htop state=present"
 \end{lstlisting}
 
 \begin{itemize}
     \item \texttt{webservers}: Targets only the \texttt{webservers} group.
-    \item \texttt{-m apt}: Uses the \texttt{apt} module for package management.
+    \item \texttt{-m ansible.builtin.package}: Uses the \texttt{ansible.builtin.package} module for package management.
     \item \texttt{-a "name=htop state=present"}: Specifies the package name and desired state.
 \end{itemize}
 

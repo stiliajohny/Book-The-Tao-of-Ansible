@@ -40,26 +40,26 @@ Here's what it might look like:
   hosts: all
   tasks:
     - name: Create a directory
-      file:
+      ansible.builtin.file:
         path: /tmp/example
         state: directory
 
     - name: Copy a file
-      copy:
+      ansible.builtin.copy:
         src: example.txt
         dest: /tmp/example/example.txt
 
     - name: Ensure Apache is running
-      service:
+      ansible.builtin.service:
         name: apache2
         state: started
 \end{lstlisting}
 
 Let's break it down:
 \begin{itemize}
-    \item The \texttt{file} module creates a directory.
-    \item The \texttt{copy} module moves a file from your control node to the target machine.
-    \item The \texttt{service} module ensures the Apache service is running. (Because no one likes a stopped web server.)
+    \item The \texttt{ansible.builtin.file} module creates a directory.
+    \item The \texttt{ansible.builtin.copy} module moves a file from your control node to the target machine.
+    \item The \texttt{ansible.builtin.service} module ensures the Apache service is running. (Because no one likes a stopped web server.)
 \end{itemize}
 
 \subsection{Running the Playbook}
@@ -80,7 +80,7 @@ Modules are like \textbf{I}ngredients in your automation recipe. Ansible provide
 The \texttt{file} module is your go-to for managing files and directories. You can use it to create, delete, or modify files and directories. Here's an example:
 \begin{lstlisting}[language=yaml, caption=Using the File Module]
 - name: Ensure a directory exists
-  file:
+  ansible.builtin.file:
     path: /var/log/example
     state: directory
 \end{lstlisting}
@@ -92,7 +92,7 @@ The \texttt{copy} module lets you copy files from your control node to the manag
 Example:
 \begin{lstlisting}[language=yaml, caption=Using the Copy Module]
 - name: Copy a configuration file
-  copy:
+  ansible.builtin.copy:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 \end{lstlisting}
@@ -104,7 +104,7 @@ The \texttt{service} module ensures that services (like Apache or Nginx) are sta
 Example:
 \begin{lstlisting}[language=yaml, caption=Using the Service Module]
 - name: Start and enable Apache
-  service:
+  ansible.builtin.service:
     name: apache2
     state: started
     enabled: yes

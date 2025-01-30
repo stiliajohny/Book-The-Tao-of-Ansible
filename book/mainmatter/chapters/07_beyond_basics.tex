@@ -148,7 +148,7 @@ Need to update web servers one at a time to avoid downtime? Ansible's variables 
   serial: 1
   tasks:
     - name: Update application
-      shell: "deploy_app.sh"
+      ansible.builtin.shell: "deploy_app.sh"
 \end{lstlisting}
 
 \textbf{E}ach server is updated in sequence, ensuring your service stays online.
@@ -161,7 +161,7 @@ When scaling infrastructure, templates save you from manually editing configurat
   hosts: new_webservers
   tasks:
     - name: Configure load balancer
-      template:
+      ansible.builtin.template:
         src: lb_config.j2
         dest: /etc/nginx/sites-enabled/default
 \end{lstlisting}
