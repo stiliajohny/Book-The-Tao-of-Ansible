@@ -984,7 +984,11 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -1411,6 +1415,10 @@ class="pcrr8t-"> </span></span><span style="color:#000000"><span
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
 class="pcrr8t-">m</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">ping</span></span></div>
   
       <ul class="itemize1">
@@ -1424,8 +1432,9 @@ class="pcrr8t-x-x-120">-i inventory</span>: Speciﬁes the inventory ﬁle to us
       </p></li>
       <li class="itemize">
       <!--l. 98--><p class="noindent" ><span 
-class="pcrr8t-x-x-120">-m ping</span>: Uses the <span 
-class="pcrr8t-x-x-120">ping </span>module to test connectivity.</p></li></ul>
+class="pcrr8t-x-x-120">-m ansible.builtin.ping</span>:                Uses                the
+      <span 
+class="pcrr8t-x-x-120">ansible.builtin.ping </span>module to test connectivity.</p></li></ul>
 <!--l. 101--><p class="noindent" >If everything is set up correctly, you’ll see a response like this: </p><!--l. 102-->
 <a 
  id="x1-25004r7"></a>
@@ -1533,12 +1542,12 @@ class="pcrr8t-">}</span></span></div>
   
 <a 
  id="x1-25014r36"></a>
+                                                                
+                                                                
 <h4 class="subsectionHead"><span class="titlemark">2.3.2    </span> <a 
  id="x1-260002"></a>Executing a Command</h4>
 <!--l. 115--><p class="noindent" >Next, let’s run a simple shell command on all the hosts. For example, to
 check the date on each machine: </p><!--l. 116-->
-                                                                
-                                                                
 <a 
  id="x1-26001r8"></a>
 <a 
@@ -1566,6 +1575,10 @@ class="pcrr8t-"> </span></span><span style="color:#000000"><span
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
 class="pcrr8t-">m</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">shell</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
@@ -1579,8 +1592,9 @@ class="pcrr8t-">"</span></span></div>
       <ul class="itemize1">
       <li class="itemize">
       <!--l. 122--><p class="noindent" ><span 
-class="pcrr8t-x-x-120">-m shell</span>: Speciﬁes the <span 
-class="pcrr8t-x-x-120">shell </span>module.
+class="pcrr8t-x-x-120">-m ansible.builtin.shell</span>:            Speciﬁes            the
+      <span 
+class="pcrr8t-x-x-120">ansible.builtin.shell </span>module.
       </p></li>
       <li class="itemize">
       <!--l. 123--><p class="noindent" ><span 
@@ -1595,13 +1609,13 @@ class="pcrr8t-x-x-120">date </span>command as an argument.</p></li></ul>
 <!--l. 130--><p class="noindent" >Finally, let’s install a package (e.g., <span 
 class="pcrr8t-x-x-120">htop</span>) on the <span 
 class="pcrr8t-x-x-120">webservers </span>group:
+                                                                
+                                                                
 </p><!--l. 131-->
 <a 
  id="x1-27001r9"></a>
 <a 
  id="x1-27002"></a>
-                                                                
-                                                                
   <br />
       <div class="caption" 
 ><span class="id">Listing 2.9:
@@ -1623,7 +1637,11 @@ class="pcrr8t-"> </span></span><span style="color:#000000"><span
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
 class="pcrr8t-">m</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
 class="pcrr8t-">a</span></span><span style="color:#000000"><span 
@@ -1646,8 +1664,10 @@ class="pcrr8t-x-x-120">webservers </span>group.
       </p></li>
       <li class="itemize">
       <!--l. 137--><p class="noindent" ><span 
-class="pcrr8t-x-x-120">-m apt</span>: Uses the <span 
-class="pcrr8t-x-x-120">apt </span>module for package management.
+class="pcrr8t-x-x-120">-m ansible.builtin.package</span>:
+      Uses the <span 
+class="pcrr8t-x-x-120">ansible.builtin.package </span>module for package
+      management.
       </p></li>
       <li class="itemize">
       <!--l. 138--><p class="noindent" ><span 
@@ -1661,6 +1681,8 @@ class="pcrr8t-x-x-120">-a "name=htop state=present"</span>:       Speciﬁes    
 run your ﬁrst ad-hoc commands. These small steps might not seem
 revolutionary, but they form the foundation for powerful automation
 workﬂows.
+                                                                
+                                                                
 </p><!--l. 147--><p class="noindent" ><span 
 class="ntx-Italic-tlf-t1-x-x-120">In the next chapter, we’ll dive into playbooks. Ansible’s true strength and</span>
 <span 
@@ -1914,6 +1936,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -1982,6 +2008,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">copy</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2058,6 +2088,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2097,17 +2131,18 @@ class="pcrr8t-">started</span></span></div>
       <ul class="itemize1">
       <li class="itemize">
       <!--l. 60--><p class="noindent" >The <span 
-class="pcrr8t-x-x-120">file </span>module creates a directory.
+class="pcrr8t-x-x-120">ansible.builtin.file </span>module creates a directory.
       </p></li>
       <li class="itemize">
-      <!--l. 61--><p class="noindent" >The <span 
-class="pcrr8t-x-x-120">copy </span>module moves a ﬁle from your control node to the
-      target machine.
+      <!--l. 61--><p class="noindent" >The  <span 
+class="pcrr8t-x-x-120">ansible.builtin.copy </span>module  moves  a  ﬁle  from
+      your control node to the target machine.
       </p></li>
       <li class="itemize">
-      <!--l. 62--><p class="noindent" >The <span 
-class="pcrr8t-x-x-120">service </span>module ensures the Apache service is running.
-      (Because no one likes a stopped web server.)</p></li></ul>
+      <!--l. 62--><p class="noindent" >The   <span 
+class="pcrr8t-x-x-120">ansible.builtin.service </span>module   ensures   the
+      Apache service is running. (Because no one likes a stopped web
+      server.)</p></li></ul>
 <a 
  id="x1-31020r41"></a>
 <h4 class="subsectionHead"><span class="titlemark">3.2.1    </span> <a 
@@ -2115,10 +2150,10 @@ class="pcrr8t-x-x-120">service </span>module ensures the Apache service is runni
 <!--l. 67--><p class="noindent" >To run your playbook, use the <span 
 class="pcrr8t-x-x-120">ansible-playbook </span>command:
 </p><!--l. 68-->
+                                                                
+                                                                
 <a 
  id="x1-32001r3"></a>
-                                                                
-                                                                
 <a 
  id="x1-32002"></a>
   <br />
@@ -2180,9 +2215,9 @@ use it to create, delete, or modify ﬁles and directories. Here’s an example:
           </span><span  
 class="content">Using
           the
+                                                                
+                                                                
           File
-                                                                
-                                                                
           Module</span></div><!--tex4ht:label?: x1-34001r3 --><div class="lstlisting" id="listing-14"><span class="label"><a 
  id="x1-34003r1"></a><span 
 class="ntx-Regular-tlf-t1-x-x-60">1</span></span><span style="color:#000000"><span 
@@ -2204,6 +2239,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2278,6 +2317,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">copy</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2359,6 +2402,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2517,7 +2564,11 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -2592,6 +2643,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2666,6 +2721,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2801,7 +2860,11 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -2868,6 +2931,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -2940,6 +3007,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3112,7 +3183,11 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -3179,7 +3254,11 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -3302,6 +3381,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3391,6 +3474,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3452,6 +3539,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">7</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3531,6 +3622,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">copy</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3633,6 +3728,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3711,6 +3810,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3814,7 +3917,11 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -3879,6 +3986,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -3965,6 +4076,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">copy</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -4057,6 +4172,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -5400,6 +5519,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">shell</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
@@ -5491,6 +5614,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">template</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -5680,7 +5807,11 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -5747,6 +5878,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -5828,6 +5963,12 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-"> </span></span><span 
+class="pcrr8t-"> </span><span style="color:#000000"><span 
 class="pcrr8t-">template</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -5908,6 +6049,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -6183,7 +6328,11 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -6252,6 +6401,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -6333,6 +6486,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">command</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span id="textcolor30"><span 
@@ -6700,7 +6857,11 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -6795,6 +6956,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">template</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -7035,6 +7200,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -8503,6 +8672,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">debug</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -8655,6 +8828,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">command</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
@@ -8888,6 +9065,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">lineinfile</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -8958,6 +9139,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -9102,6 +9287,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">copy</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -9171,6 +9360,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">8</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -9228,6 +9421,10 @@ class="pcrr8t-"> </span><span
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">service</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -9733,7 +9930,11 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -9836,6 +10037,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">file</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -10029,7 +10234,12 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
+class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
  id="x1-151005r3"></a><span 
@@ -10084,7 +10294,11 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">apt</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -10175,7 +10389,11 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
-class="pcrr8t-">yum</span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">package</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
 <span class="label"><a 
@@ -10241,6 +10459,10 @@ class="pcrr8t-"> </span></span><span style="color:#000000"><span
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
 class="pcrr8t-">m</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">ping</span></span></div>
         
       </li>
@@ -10271,6 +10493,10 @@ class="pcrr8t-"> </span></span><span style="color:#000000"><span
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
 class="pcrr8t-">m</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">ping</span></span><span style="color:#000000"><span 
 class="pcrr8t-"> </span></span><span style="color:#000000"><span 
 class="pcrr8t-">-</span></span><span style="color:#000000"><span 
@@ -10388,6 +10614,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">debug</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -10662,6 +10892,10 @@ class="pcrr8t-"> </span><br />
 class="ntx-Regular-tlf-t1-x-x-60">2</span></span><span 
 class="pcrr8t-"> </span><span 
 class="pcrr8t-"> </span><span style="color:#000000"><span 
+class="pcrr8t-">ansible</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
+class="pcrr8t-">builtin</span></span><span style="color:#000000"><span 
+class="pcrr8t-">.</span></span><span style="color:#000000"><span 
 class="pcrr8t-">copy</span></span><span style="color:#000000"><span 
 class="pcrr8t-">:</span></span><span 
 class="pcrr8t-"> </span><br /> 
@@ -10879,9 +11113,6 @@ you automate, and every error you debug is a step forward.
                                                                 
                                                                 
                                                                 
-                                                                
-                                                                
-</p><!--l. 58--><p class="noindent" >
                                                                 
                                                                 
                                                                 
