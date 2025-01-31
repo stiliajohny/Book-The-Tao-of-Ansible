@@ -25,6 +25,6 @@ Explore more of my work and follow me for updates on new releases:
 
 ## Free PDF Resources
 
-For free access to PDFs and additional resources, visit:
+For free access to PDFs, ePubs, and MOBI versions of the book, visit:
 
 - [./docs directory](./docs)
