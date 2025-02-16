@@ -23,12 +23,12 @@ Let's start with some common Ansible issues. If you've spent any time writing pl
 Here's an example of bad YAML:
 \begin{lstlisting}[language=yaml, caption=Bad YAML]
 - name: Install packages
-  ansible.builtin.package:
+  ansible.builtin.package
     name: nginx
     state: present
 \end{lstlisting}
 
-What's wrong? The \texttt{apt} module is missing a colon. Fix it like this:
+What's wrong? The \texttt{package} module is missing a colon. Fix it like this:
 \begin{lstlisting}[language=yaml, caption=Correct YAML]
 - name: Install packages
   ansible.builtin.package:
