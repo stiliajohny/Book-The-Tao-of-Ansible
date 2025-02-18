@@ -1,51 +1,16 @@
 name: Build and Release
 
-on:
-  [push, pull_request]
-
-  #   push:
-#     paths:
-#       - "docker/Dockerfile"
-#       - "book/**"
-#   pull_request:
-#     paths:
-#       - "docker/Dockerfile"
-#       - "book/**"
+on: [push, pull_request]
 
 jobs:
-  build-docker:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.DOCKER_PUBLISH }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      - name: Build and push Docker image
-        run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest -f docker/Dockerfile .
-          docker push ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest
-
   build-latex:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: read
-    needs: build-docker
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.DOCKER_PUBLISH }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Pull Docker image
         run: docker pull ghcr.io/${{ github.repository_owner }}/tao-ansible-builder:latest

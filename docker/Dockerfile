@@ -23,8 +23,10 @@ RUN NONINTERACTIVE=1 \
     latexmk \
     tex4ht \
     make \
-    && rm -rf /var/lib/apt/lists/*
-
+    && apt-get clean \
+    && rm -rf /var/cache/apt/* \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/cache/texlive/* 
 # Configure ImageMagick policy to allow PDF operations
 RUN sed -i 's/rights="none" pattern="PDF"/rights="read|write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
 
