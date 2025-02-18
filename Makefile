@@ -71,7 +71,7 @@ pdf: docker-build ## Build the PDF with bibliography
 
 # Build PDF with cover page
 pdf-with-cover: pdf ## Build PDF with cover page
-	$(DOCKER_RUN) bash -c "cd book && convert ../images/Kindle\ eBook/ebook-cover-1.jpg cover-temp.pdf && \
+	$(DOCKER_RUN) bash -c "cd book && convert ../images/Kindle\ eBook/ebook-cover.jpg cover-temp.pdf && \
 		pdftk cover-temp.pdf /docs/The-Tao-of-Ansible.pdf cat output /docs/The-Tao-of-Ansible-with-cover.pdf && \
 		rm cover-temp.pdf"
 
@@ -80,13 +80,13 @@ epub: pdf ## Build ePUB version
 	$(DOCKER_RUN) bash -c "cd book && pandoc main.tex -o /docs/The-Tao-of-Ansible.epub \
 		--toc \
 		--toc-depth=3 \
-		--epub-cover-image=../images/Kindle\ eBook/ebook-cover-1.jpg \
+		--epub-cover-image=../images/Kindle\ eBook/ebook-cover.jpg \
 		--metadata title='The Tao of Ansible' \
 		--metadata author='John Stilia'"
 
 # Build ePUB with cover page
 epub-with-cover: epub ## Build ePUB with cover page
-	$(DOCKER_RUN) bash -c "cp images/Kindle\ eBook/ebook-cover-1.jpg book/cover.jpg && \
+	$(DOCKER_RUN) bash -c "cp images/Kindle\ eBook/ebook-cover.jpg book/cover.jpg && \
 		cd book && pandoc main.tex -o /docs/The-Tao-of-Ansible-with-cover.epub \
 		--toc \
 		--toc-depth=3 \
@@ -98,7 +98,7 @@ epub-with-cover: epub ## Build ePUB with cover page
 # Build HTML version
 html: pdf ## Build HTML version
 	$(DOCKER_RUN) bash -c "cd book && htlatex main.tex 'xhtml,charset=utf-8' ' -cunihtf -utf8' && \
-		mv main.html /docs/tao-ansible.html && \
+		mv main.html /docs/index.html && \
 		mv *.css /docs/"
 
 # Build Kindle version (requires calibre's ebook-convert)
